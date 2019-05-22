@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <title>Spil</title>
+  </head>
+  <body>
+    <section class="header">
+      <nav role="navigation">
+        <div id="menuToggle">
+          <input type="checkbox" />
+
+          <span></span>
+          <span></span>
+          <span></span>
+
+          <ul id="menu">
+            <a href="#spilQuick"><li>Spil Quick</li></a>
+            <a href="#quickchancen"><li>Quickchancen</li></a>
+            <a href="#kampanger"><li>Kampanger</li></a>
+            <a href="#vindere"><li>Vindere</li></a>
+          </ul>
+        </div>
+        <div class="login">
+          <h2>LOG IN</h2>
+        </div>
+        <img src="imgs/logo.png" />
+      </nav>
+    </section>
+
+    <section class="indhold">
+      <h1>Ohøj Landkrabbe!</h1>
+
+      <h2>
+        Har du hvad der skal til for at blive en
+        <span style="color:#EAA900;">ægte</span> pirat?
+      </h2>
+
+      <img src="imgs/baggrund.png" />
+
+      <!-- splash billede  -->
+
+      <h2>
+        Test dine evner med kanonen og vind et
+        <span style="color:#EAA900;">GRATIS</span> Quick skrabelod!
+      </h2>
+
+      <div class="infografik">
+        <img src="svg/infografik.svg" />
+      </div>
+      <h2>Hvad er dit navn, Matros?</h2>
+
+      <form>
+        <label for="name"></label>
+        <input
+          type="text"
+          id="name"
+          name="fullname"
+          required
+          placeholder="John M. Doe"
+        />
+      </form>
+      <div class="btn-start">
+        <button class="start">START SPIL</button>
+      </div>
+    </section>
+
+    <script>
+      const form = document.querySelector("form");
+      const start = ".start";
+      window.addEventListener("DOMContentLoaded", load);
+
+      ("use strict");
+      function load() {
+        document.querySelector(".start").addEventListener("click", e => {
+          e.preventDefault();
+          if (form.checkValidity()) {
+            post({
+              fullname: form.elements.fullname.value
+            });
+          }
+        });
+        post();
+      }
+
+      // this function adds a new line in our DB that contains the last addet post
+      function post(myData) {
+        const postData = JSON.stringify(myData);
+        fetch("https://danskespil-cd72.restdb.io/rest/danskespil", {
+          method: "post",
+          body: postData,
+          headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            "x-apikey": "5ce28dfc780a473c8df5c9cc",
+            "cache-control": "no-cache"
+          }
+        })
+          .then(res => res.json())
+          .then(myData => {
+            // this clears the form fields when refreshed
+            document.querySelector(".start").disabled = false;
+            form.elements.fullname.value = null;
+          });
+      }
+    </script>
+  </body>
+</html>
