@@ -495,11 +495,12 @@ select {
 /* Kanonen skal dreje fra side til side. */
 #cannon {
   transform: rotate(-40deg);
-  animation: movecannon 5s linear infinite alternate;
   transform-origin: 50% 80%;
   transform-box: fill-box;
   cursor: pointer;
+  animation: movecannon 5s linear infinite alternate;
 }
+
 @keyframes movecannon {
   0% {
     transform: rotate(-40deg);
@@ -511,6 +512,8 @@ select {
 }
 /* gør at man kan se kanonkuglen blive skudt afsted */
 #cannonball {
+  position: absolute;
+  transform: translate(0, 0);
   transition: transform 0.5s ease-in;
 }
 

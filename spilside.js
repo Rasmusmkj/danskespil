@@ -50,8 +50,13 @@ function initSVG() {
 
   // Når der bliver klikket på kannonen:
   document.querySelector("#cannon").addEventListener("click", () => {
+    cannonball.style.display = "inline";
+
     // Finder den nuværende vinkel.
     findAngle();
+
+    // Affyrer kannonen.
+    fireCannon();
 
     console.log(angle);
   });
@@ -83,4 +88,49 @@ function findAngle() {
   //console.log("Rotate: " + angle + "deg");
 
   return angle;
+}
+
+function fireCannon() {
+  console.log(angle);
+  let cannonball = document.querySelector("#cannonball");
+
+  if (angle > -21 && angle < -16) {
+    // Rammer den skib 1
+    cannonball.style.transform = "translate(-127px, -450px)";
+    setTimeout(hitShip1, 500);
+  } else if (angle > -4 && angle < 6) {
+    // Rammer den skib 2
+    cannonball.style.transform = "translate(10px, -340px)";
+    setTimeout(hitShip2, 500);
+  } else if (angle > 16 && angle < 22) {
+    // Rammer den skib 3
+    cannonball.style.transform = "translate(135px, -450px)";
+    setTimeout(hitShip3, 500);
+  }
+  setTimeout(newBall, 550);
+}
+
+function hitShip1() {
+  document.querySelector("#ship1").style.visibility = "hidden";
+  document.querySelector("#shipwreck1").style.visibility = "visible";
+  document.querySelector("#shine1").style.visibility = "visible";
+  document.querySelector("#prize1").style.visibility = "visible";
+}
+
+function hitShip2() {
+  document.querySelector("#ship2").style.visibility = "hidden";
+  document.querySelector("#shipwreck2").style.visibility = "visible";
+  document.querySelector("#shine2").style.visibility = "visible";
+  document.querySelector("#prize2").style.visibility = "visible";
+}
+function hitShip3() {
+  document.querySelector("#ship3").style.visibility = "hidden";
+  document.querySelector("#shipwreck3").style.visibility = "visible";
+  document.querySelector("#shine3").style.visibility = "visible";
+  document.querySelector("#prize3").style.visibility = "visible";
+}
+
+function newBall() {
+  cannonball.style.display = "none";
+  cannonball.style.transform = "translate(0, 0)";
 }
