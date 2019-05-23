@@ -31,6 +31,8 @@
 
 window.addEventListener("DOMContentLoaded", loadSVG);
 
+let angle; // vinklen på kanonen
+
 // ---- LOADER SVG'EN
 function loadSVG() {
   fetch("svg/pirategame.svg")
@@ -39,6 +41,46 @@ function loadSVG() {
       document
         .querySelector("#svg_pirategame")
         .insertAdjacentHTML("afterbegin", svgdata);
-      console.log(document.querySelector("#svg_pirategame"));
+      initSVG();
     });
+}
+
+function initSVG() {
+  findAngle(); // til at finde vinklen på kanonen.
+
+  // Når der bliver klikket på kannonen:
+  document.querySelector("#cannon").addEventListener("click", () => {
+    // Finder den nuværende vinkel.
+    findAngle();
+
+    console.log(angle);
+  });
+}
+
+// ----  FINDER VINKLEN PÅ KANONEN
+function findAngle() {
+  // Da vi skal kunne aflæse vinklen på kanonen, bruger vi getComputedStyle().transform.
+  // Men da denne viser en matrix istedet for den egentlige vinkel i grader, benyttes den følgende kode til at omregne de givne tal om til vinklen.
+  // Koden stammer fra dette link: https://css-tricks.com/get-value-of-css-rotation-through-javascript/ (Chris Coyier)
+
+  // Her finder vi styling transform angivet i en matrix (dette er i en string).
+  let cannon = document.querySelector("#cannon");
+  let cMatrix = window.getComputedStyle(cannon, null).transform;
+  // Betydningen af de værdier der befinder sig i matrixen i forhold til rotate:
+  //    rotate(Xdeg) = matrix(cos(X), sin(X), -sin(X), cos(X), 0, 0)
+
+  // Her "splitter" vi stringen op, så vi står tilbage med værdierne.
+  let cMatrixValues = cMatrix
+    .split("(")[1]
+    .split(")")[0]
+    .split(",");
+
+  // For at finde vinklen, skal man bruge værdien sin(x). Det er denne vi udvælger her.
+  let s = cMatrixValues[1];
+
+  // man finder vinklen ved at sige v = radian * 180/pi. radian = arcsin(number).
+  angle = Math.round(Math.asin(s) * (180 / Math.PI));
+  //console.log("Rotate: " + angle + "deg");
+
+  return angle;
 }
