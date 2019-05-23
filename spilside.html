@@ -5,45 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <main></main>
+    <!-- SELVE SPILLET -->
+    <div id="svg_pirategame"></div>
+
+    <!-- SKAL ARBEJDES VIDERE PÅ SENERE -->
+    <!-- <main></main>
     <template>
       <article>
         <h1></h1>
       </article>
-    </template>
+    </template> -->
+
+    <script src="spilside.js"></script>
   </body>
-
-  <script>
-    "use strict";
-
-    window.addEventListener("DOMContentLoaded", getJson);
-
-    // this function gets the json-file from the DB and then displayes the data in the html DOM
-    function getJson() {
-      fetch("https://danskespil-cd72.restdb.io/rest/danskespil", {
-        method: "get",
-        headers: {
-          "Content-Type": "application/json; charset=utf-8",
-          "x-apikey": "5ce28dfc780a473c8df5c9cc",
-          "cache-control": "no-cache"
-        }
-      })
-        .then(getJson => getJson.json())
-        .then(getJson => {
-          getJson.forEach(showPerson);
-          //   console.log(getJson);
-        });
-    }
-    const form = document.querySelector("form");
-
-    function showPerson(name) {
-      const template = document.querySelector("template").content;
-      const clone = template.cloneNode(true);
-      clone.querySelector("h1").textContent = name.fullname;
-      document.querySelector("main").appendChild(clone);
-      console.log(name);
-    }
-  </script>
 </html>
