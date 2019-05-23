@@ -485,3 +485,56 @@ select {
 .cls-62 {
   font-size: 14.43px;
 }
+
+/**-- ekstra til svg'en --**/
+
+.sunshine {
+  filter: url(#sun_blur);
+}
+
+/* Kanonen skal dreje fra side til side. */
+#cannon {
+  transform: rotate(-40deg);
+  animation: movecannon 5s linear infinite alternate;
+  transform-origin: 50% 80%;
+  transform-box: fill-box;
+  cursor: pointer;
+}
+@keyframes movecannon {
+  0% {
+    transform: rotate(-40deg);
+  }
+
+  100% {
+    transform: rotate(40deg);
+  }
+}
+/* gør at man kan se kanonkuglen blive skudt afsted */
+#cannonball {
+  transition: transform 0.5s ease-in;
+}
+
+/* hitship dækker over de illustrationer der kommer når man rammer et skib */
+/* de skal være skjulte til at starte med */
+.hitship {
+  visibility: hidden;
+}
+
+/*får skibene til at gynge lidt i vandet*/
+.ship {
+  transform: rotate(-3deg);
+  animation: moveship 3s linear infinite alternate;
+  transform-origin: 50% 100%;
+  transform-box: fill-box;
+  cursor: pointer;
+}
+
+@keyframes moveship {
+  0% {
+    transform: rotate(-3deg);
+  }
+
+  100% {
+    transform: rotate(3deg);
+  }
+}
