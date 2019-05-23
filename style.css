@@ -195,3 +195,292 @@ select {
   width: 80%;
   margin-top: 5vw;
 }
+
+/**-- SVG'EN TIL SPILLET --**/
+.cls-1 {
+  fill: #ee7e58;
+}
+
+.cls-2 {
+  fill: #f99061;
+}
+
+.cls-3 {
+  fill: #db6742;
+}
+
+.cls-4 {
+  fill: #fea63a;
+}
+
+.cls-5,
+.cls-58 {
+  fill: #ffd845;
+}
+
+.cls-6 {
+  fill: #ffd687;
+}
+
+.cls-7 {
+  fill: #fff;
+}
+
+.cls-8 {
+  opacity: 0.28;
+}
+
+.cls-9 {
+  opacity: 0.7;
+}
+
+.cls-10 {
+  fill: url(#sun_gradient);
+}
+
+.cls-11 {
+  fill: url(#water_gradient);
+}
+
+.cls-12 {
+  fill: #fbfdfd;
+}
+
+.cls-13 {
+  fill: #a07138;
+}
+
+.cls-14 {
+  fill: #91662d;
+}
+
+.cls-15,
+.cls-16,
+.cls-17,
+.cls-19,
+.cls-27,
+.cls-28,
+.cls-33,
+.cls-44,
+.cls-54 {
+  fill: none;
+}
+
+.cls-15 {
+  stroke: #7c562c;
+}
+
+.cls-15,
+.cls-16,
+.cls-17,
+.cls-19,
+.cls-20,
+.cls-21,
+.cls-27,
+.cls-28,
+.cls-33,
+.cls-54 {
+  stroke-miterlimit: 10;
+}
+
+.cls-16,
+.cls-17 {
+  stroke: #8c6133;
+}
+
+.cls-17,
+.cls-33 {
+  stroke-linecap: round;
+}
+
+.cls-18 {
+  fill: #a87f4e;
+}
+
+.cls-19 {
+  stroke: #936c42;
+}
+
+.cls-20 {
+  fill: #161616;
+}
+
+.cls-20,
+.cls-21 {
+  stroke: #000;
+}
+
+.cls-21 {
+  fill: #262626;
+}
+
+.cls-22 {
+  fill: #87807a;
+}
+
+.cls-23 {
+  fill: #9b9795;
+}
+
+.cls-24 {
+  fill: #bcbbbb;
+}
+
+.cls-25 {
+  fill: #c99561;
+}
+
+.cls-26 {
+  fill: #a57850;
+}
+
+.cls-27 {
+  stroke: #b58457;
+}
+
+.cls-28 {
+  stroke: #896245;
+}
+
+.cls-29 {
+  fill: #171a1b;
+}
+
+.cls-30 {
+  fill: #212020;
+}
+
+.cls-31 {
+  fill: #272828;
+}
+
+.cls-32 {
+  fill: #444;
+}
+
+.cls-33 {
+  stroke: #f4eed7;
+  stroke-width: 4px;
+}
+
+.cls-34 {
+  fill: #f7d854;
+}
+
+.cls-35 {
+  fill: #f4eed7;
+}
+
+.cls-36 {
+  fill: #f9a24b;
+}
+
+.cls-37 {
+  fill: #ef6a30;
+}
+
+.cls-38 {
+  fill: #96604b;
+}
+
+.cls-39 {
+  fill: #1c475a;
+}
+
+.cls-40 {
+  fill: #854623;
+}
+
+.cls-41 {
+  fill: #74371a;
+}
+
+.cls-42 {
+  fill: #622e14;
+}
+
+.cls-43 {
+  fill: #d49727;
+}
+
+.cls-45 {
+  fill: #803a1a;
+}
+
+.cls-46 {
+  fill: #b5811c;
+}
+
+.cls-47 {
+  fill: #23231d;
+}
+
+.cls-48 {
+  fill: #050505;
+}
+
+.cls-49 {
+  fill: #484138;
+}
+
+.cls-50 {
+  fill: #292927;
+}
+
+.cls-51 {
+  fill: #f9f9f8;
+}
+
+.cls-52 {
+  fill: #070700;
+}
+
+.cls-53 {
+  fill: #33332d;
+}
+
+.cls-54 {
+  stroke: #33332d;
+  stroke-width: 1.27px;
+}
+
+.cls-55 {
+  fill: #020202;
+}
+
+.cls-56 {
+  fill: #1b1b15;
+}
+
+.cls-57 {
+  fill: #184840;
+}
+
+.cls-58,
+.cls-61,
+.cls-62 {
+  isolation: isolate;
+}
+
+.cls-59 {
+  fill: #f2eec9;
+}
+
+.cls-60 {
+  fill: #918e73;
+}
+
+.cls-61 {
+  font-size: 14.43px;
+}
+
+.cls-61,
+.cls-62 {
+  fill: #361a00;
+  font-family: OpenSans-Bold, Open Sans;
+  font-weight: 700;
+}
+
+.cls-62 {
+  font-size: 14.43px;
+}
