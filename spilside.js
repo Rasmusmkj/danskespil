@@ -163,7 +163,10 @@ function hitShip3() {
 // ----  RAMMER VANDET I VENSTRE SIDE
 function hitWater1() {
   let hitsWater = document.querySelector("#hits_water");
+
+  // Sørger for at animationen er synlig.
   hitsWater.style.display = "inline";
+  // tilføjer den class der har animationen.
   hitsWater.classList.add("splash");
 
   // fjerne animationen, når den er færdig med at kører
@@ -175,8 +178,12 @@ function hitWater1() {
 // ----  RAMMER VANDET I HØJRE SIDE
 function hitWater2() {
   let hitsWater = document.querySelector("#hits_water");
+
+  // Sørger for at animationen er synlig.
   hitsWater.style.display = "inline";
+  // rykker den hen i højre side, hvor den skal udspille sig.
   hitsWater.style.transform = "translateX(154px)";
+  // tilføjer den class der har animationen.
   hitsWater.classList.add("splash");
 
   // fjerne animationen, når den er færdig med at kører
@@ -187,8 +194,11 @@ function hitWater2() {
 
 // ----  STOPPER ANIMATIONEN PÅ PLASKET I VANDET
 function stopHitWater(hitsWater) {
+  // rykkes tilbage til udgangspunktet (i tilfælde af at man har ramt i højre side)
   hitsWater.style.transform = "translateX(0)";
+  // fjerner den fra skærmen
   hitsWater.style.display = "none";
+  // fjerner class'en med animationen.
   hitsWater.classList.remove("splash");
 }
 
