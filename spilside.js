@@ -67,8 +67,7 @@ function initSVG() {
 
       // Efter den 3. gang der bliver skudt skal der dukke et modal-vindue op.
       if (count == 3) {
-        console.log("Der er blevet skudt 3 gange");
-        // DER SKAL KALDES PÅ EN FUNKTION, DER ÅBNER ET MODAL VINDUE
+        setTimeout(gameEnd, 1500);
       }
     }
   });
@@ -218,4 +217,25 @@ function prepareRandomPrize(shipwreck) {
       bannertext.innerHTML = "2 spil";
     }
   }
+}
+
+// ---- NÅR DER ER BLEVET SKUDT ALLE TRE GANGE
+function gameEnd() {
+  let endOfGame = document.querySelector("#end_of_game");
+
+  // Gør modal-vinduet synligt over en transition.
+  endOfGame.style.visibility = "visible";
+  endOfGame.style.opacity = "1";
+
+  // Finder værdierne/præmierne på de skibene
+  let prize1 = document.querySelector("#bannertext1").innerHTML.split(" ")[0];
+  let prize2 = document.querySelector("#bannertext2").innerHTML.split(" ")[0];
+  let prize3 = document.querySelector("#bannertext3").innerHTML.split(" ")[0];
+
+  // beregner den samlede præmie
+  let prize = Number(prize1) + Number(prize2) + Number(prize3);
+
+  // skriver det ind i modal-vinduet.
+  document.querySelector("#prize").innerHTML =
+    "Du har vundet " + prize + " spil";
 }
