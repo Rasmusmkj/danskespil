@@ -196,6 +196,12 @@ select {
   margin-top: 5vw;
 }
 
+/* ------ SPILSIDEN --------- */
+
+#spilsiden {
+  margin: 0;
+}
+
 /**-- SVG'EN TIL SPILLET --**/
 
 .cls-1 {
@@ -494,20 +500,20 @@ select {
 
 /* Kanonen skal dreje fra side til side. */
 #cannon {
-  transform: rotate(-40deg);
-  transform-origin: 50% 80%;
+  transform: rotate(-30deg);
+  transform-origin: 50% 95%;
   transform-box: fill-box;
   cursor: pointer;
-  animation: movecannon 5s linear infinite alternate;
+  animation: cannon_kf 5s linear infinite alternate;
 }
 
-@keyframes movecannon {
+@keyframes cannon_kf {
   0% {
-    transform: rotate(-40deg);
+    transform: rotate(-30deg);
   }
 
   100% {
-    transform: rotate(40deg);
+    transform: rotate(30deg);
   }
 }
 /* gør at man kan se kanonkuglen blive skudt afsted */
@@ -526,18 +532,42 @@ select {
 /*får skibene til at gynge lidt i vandet*/
 .ship {
   transform: rotate(-3deg);
-  animation: moveship 3s linear infinite alternate;
+  animation: ship_kf 3s linear infinite alternate;
   transform-origin: 50% 100%;
   transform-box: fill-box;
   cursor: pointer;
 }
 
-@keyframes moveship {
+@keyframes ship_kf {
   0% {
     transform: rotate(-3deg);
   }
-
   100% {
     transform: rotate(3deg);
+  }
+}
+
+/* Når kanonen rammer vandet */
+#hits_water {
+  position: absolute;
+  background-image: url(svg/splask_vand.svg);
+  width: 67.33px;
+  height: 49px;
+  top: 342px;
+  left: 85px;
+  background-size: 400%;
+  display: none;
+}
+
+.splash {
+  animation: splash_kf 1s steps(4) 1;
+}
+
+@keyframes splash_kf {
+  0% {
+    background-position: 0;
+  }
+  100% {
+    background-position: -400%;
   }
 }

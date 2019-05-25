@@ -47,18 +47,30 @@ function loadSVG() {
 
 function initSVG() {
   findAngle(); // til at finde vinklen på kanonen.
+  let count = 0; // til at tælle antalet af skud.
 
   // Når der bliver klikket på kannonen:
   document.querySelector("#cannon").addEventListener("click", () => {
-    cannonball.style.display = "inline";
+    count += 1; //Tæller hver gang der bliver klikket på kanonen.
 
-    // Finder den nuværende vinkel.
-    findAngle();
+    // Man kan maks skyde 3 gange.
+    if (count < 4) {
+      // når kanonenkuglen er blevet skudt, fjerner vi den så man ikke kan se den, idet den bevæger sig tilbage til kanonen
+      // man nå man så klikker igen på kanonen skal man kunne se den igen.
+      cannonball.style.display = "inline";
 
-    // Affyrer kannonen.
-    fireCannon();
+      // Finder den nuværende vinkel.
+      findAngle();
 
-    console.log(angle);
+      // Affyrer kannonen.
+      fireCannon();
+
+      // Efter den 3. gang der bliver skudt skal der dukke et modal-vindue op.
+      if (count == 3) {
+        console.log("Der er blevet skudt 3 gange");
+        // DER SKAL KALDES PÅ EN FUNKTION, DER ÅBNER ET MODAL VINDUE
+      }
+    }
   });
 }
 
@@ -89,27 +101,43 @@ function findAngle() {
 
   return angle;
 }
-
+// ----  AFFYRER KANONEN
 function fireCannon() {
-  console.log(angle);
   let cannonball = document.querySelector("#cannonball");
 
-  if (angle > -21 && angle < -16) {
+  // Udfaldet af hvor man rammer, afhænger af kannonens vinkel.
+  // Vi placerer derfor kanonkuglen der, hvor det passer med vinklen på kanonen.
+  if (angle >= -19 && angle <= -12.5) {
     // Rammer den skib 1
     cannonball.style.transform = "translate(-127px, -450px)";
     setTimeout(hitShip1, 500);
-  } else if (angle > -4 && angle < 6) {
+  } else if (angle > -12.5 && angle < -3) {
+    // Rammer i vandet
+    cannonball.style.transform = "translate(-77px, -385px)";
+    setTimeout(hitWater1, 500);
+  } else if (angle >= -3 && angle <= 7) {
     // Rammer den skib 2
     cannonball.style.transform = "translate(10px, -340px)";
     setTimeout(hitShip2, 500);
-  } else if (angle > 16 && angle < 22) {
+  } else if (angle > 7 && angle < 13.5) {
+    // Rammer i vandet
+    cannonball.style.transform = "translate(80px, -385px)";
+    setTimeout(hitWater2, 500);
+  } else if (angle >= 13.5 && angle <= 20) {
     // Rammer den skib 3
     cannonball.style.transform = "translate(135px, -450px)";
     setTimeout(hitShip3, 500);
+  } else if (angle < -19) {
+    cannonball.style.transform = "translate(-250px, -430px)";
+  } else if (angle > 20) {
+    cannonball.style.transform = "translate(245px, -450px)";
   }
-  setTimeout(newBall, 550);
+  setTimeout(newBall, 550); // til at fjerne kuglen, når den har nået sit mål.
+
+  document.querySelector("#cannon").style.animationPlayState = "paused"; // Sætter kanonen på pause idet den skuder.
 }
 
+// ----  RAMMER DET FØRSTE SKIB
 function hitShip1() {
   document.querySelector("#ship1").style.visibility = "hidden";
   document.querySelector("#shipwreck1").style.visibility = "visible";
@@ -117,12 +145,15 @@ function hitShip1() {
   document.querySelector("#prize1").style.visibility = "visible";
 }
 
+// ----  RAMMER DET ANDET SKIB
 function hitShip2() {
   document.querySelector("#ship2").style.visibility = "hidden";
   document.querySelector("#shipwreck2").style.visibility = "visible";
   document.querySelector("#shine2").style.visibility = "visible";
   document.querySelector("#prize2").style.visibility = "visible";
 }
+
+// ----  RAMMER DET TREDJE SKIB
 function hitShip3() {
   document.querySelector("#ship3").style.visibility = "hidden";
   document.querySelector("#shipwreck3").style.visibility = "visible";
@@ -130,7 +161,41 @@ function hitShip3() {
   document.querySelector("#prize3").style.visibility = "visible";
 }
 
+// ----  RAMMER VANDET I VENSTRE SIDE
+function hitWater1() {
+  let hitsWater = document.querySelector("#hits_water");
+  hitsWater.style.display = "inline";
+  hitsWater.classList.add("splash");
+
+  // fjerne animationen, når den er færdig med at kører
+  hitsWater.addEventListener("animationend", () => {
+    stopHitWater(hitsWater);
+  });
+}
+
+// ----  RAMMER VANDET I HØJRE SIDE
+function hitWater2() {
+  let hitsWater = document.querySelector("#hits_water");
+  hitsWater.style.display = "inline";
+  hitsWater.style.transform = "translateX(154px)";
+  hitsWater.classList.add("splash");
+
+  // fjerne animationen, når den er færdig med at kører
+  hitsWater.addEventListener("animationend", () => {
+    stopHitWater(hitsWater);
+  });
+}
+
+// ----  STOPPER ANIMATIONEN PÅ PLASKET I VANDET
+function stopHitWater(hitsWater) {
+  hitsWater.style.transform = "translateX(0)";
+  hitsWater.style.display = "none";
+  hitsWater.classList.remove("splash");
+}
+
+// ----  SÆTTER KANONKUGLEN TILBAGE TIL DENS UDGANGSPUNKT
 function newBall() {
   cannonball.style.display = "none";
   cannonball.style.transform = "translate(0, 0)";
+  document.querySelector("#cannon").style.animationPlayState = "running";
 }
