@@ -140,25 +140,25 @@ function fireCannon() {
 // ----  RAMMER DET FØRSTE SKIB
 function hitShip1() {
   document.querySelector("#ship1").style.visibility = "hidden";
-  document.querySelector("#shipwreck1").style.visibility = "visible";
-  document.querySelector("#shine1").style.visibility = "visible";
-  document.querySelector("#prize1").style.visibility = "visible";
+  document.querySelector("#hitship1").style.visibility = "visible";
+  let shipwreck = document.querySelector("#hitship1");
+  prepareRandomPrize(shipwreck);
 }
 
 // ----  RAMMER DET ANDET SKIB
 function hitShip2() {
   document.querySelector("#ship2").style.visibility = "hidden";
-  document.querySelector("#shipwreck2").style.visibility = "visible";
-  document.querySelector("#shine2").style.visibility = "visible";
-  document.querySelector("#prize2").style.visibility = "visible";
+  document.querySelector("#hitship2").style.visibility = "visible";
+  let shipwreck = document.querySelector("#hitship2");
+  prepareRandomPrize(shipwreck);
 }
 
 // ----  RAMMER DET TREDJE SKIB
 function hitShip3() {
   document.querySelector("#ship3").style.visibility = "hidden";
-  document.querySelector("#shipwreck3").style.visibility = "visible";
-  document.querySelector("#shine3").style.visibility = "visible";
-  document.querySelector("#prize3").style.visibility = "visible";
+  document.querySelector("#hitship3").style.visibility = "visible";
+  let shipwreck = document.querySelector("#hitship3");
+  prepareRandomPrize(shipwreck);
 }
 
 // ----  RAMMER VANDET I VENSTRE SIDE
@@ -198,4 +198,24 @@ function newBall() {
   cannonball.style.display = "none";
   cannonball.style.transform = "translate(0, 0)";
   document.querySelector("#cannon").style.animationPlayState = "running";
+}
+
+// ---- TILFÆLDIG PRÆMIE FOR AT RAMME ET AF SKIBENE
+function prepareRandomPrize(shipwreck) {
+  let bannertext = shipwreck.querySelector(".bannertext");
+  if (bannertext.innerHTML == "0 point") {
+    // sørger for at der er 3 forskellige tal (husk at nul er medregnet).
+    // Det er tilfældig hvilket af de tre tal, n bliver.
+    let n = Math.floor(Math.random() * Math.floor(3));
+
+    // præmien på nedskudte skib afhænger af hvilket tal n bliver.
+    // shipwreck er det skib der er blevet skudt på og ".bannertext" er dens child-element.
+    if (n === 1) {
+      bannertext.innerHTML = "0 spil";
+    } else if (n === 2) {
+      bannertext.innerHTML = "1 spil";
+    } else {
+      bannertext.innerHTML = "2 spil";
+    }
+  }
 }
