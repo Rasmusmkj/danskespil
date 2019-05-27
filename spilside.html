@@ -9,14 +9,40 @@
   </head>
   <body id="spilsiden">
     <!-- SELVE SPILLET -->
+    <div class="svgbox">
     <div id="svg_pirategame"></div>
     <div id="hits_water"></div>
+  
     <div id="end_of_game">
       <h1>Spillet er slut</h1>
-      <p>Godt spillet NAVN</p>
-      <p id="prize">Du har vundet X spil</p>
-      <p>skriv din mail...</p>
+      <p>Godt spillet <span id="result">tekst</span>!</p>
+      <p id="prize">Du har vundet gratis X spil</p>
+      <p>skriv din mail
+      </p>
+      <form>
+        <label for="email"></label>
+        <input
+          type="text"
+          id="email"
+          name="emailadresse"
+          required
+          placeholder="anders@andersen.dk"
+        />
+        <input id="checkbox" type="checkbox" 
+        required name="checkbox" />
+        <label class="checkbox" for="checkbox"></label>
+          Jeg accepterer
+          <span style="text-underline-position: below"
+            >konkurrencebetingelserne</span
+          >
+          og jeg bekræfter at jeg er over 18 år <br />
+        </label>
+        <br> 
+      </form>
+
+      <button class="start">Go</button>
     </div>
+  </div>
 
     <!-- SKAL ARBEJDES VIDERE PÅ SENERE -->
     <!-- <main></main>

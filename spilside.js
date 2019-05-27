@@ -30,6 +30,9 @@
 // }
 
 window.addEventListener("DOMContentLoaded", loadSVG);
+window.addEventListener("DOMContentLoaded", load);
+const form = document.querySelector("form");
+const start = ".start";
 
 let angle; // vinklen på kanonen
 
@@ -109,29 +112,29 @@ function fireCannon() {
   if (angle >= -19 && angle <= -12.5) {
     // Rammer den skib 1
     cannonball.style.transform = "translate(-127px, -450px)";
-    setTimeout(hitShip1, 500);
+    setTimeout(hitShip1, 1000);
   } else if (angle > -12.5 && angle < -3) {
     // Rammer i vandet
     cannonball.style.transform = "translate(-77px, -385px)";
-    setTimeout(hitWater1, 500);
+    setTimeout(hitWater1, 1000);
   } else if (angle >= -3 && angle <= 7) {
     // Rammer den skib 2
     cannonball.style.transform = "translate(10px, -340px)";
-    setTimeout(hitShip2, 500);
+    setTimeout(hitShip2, 1000);
   } else if (angle > 7 && angle < 13.5) {
     // Rammer i vandet
     cannonball.style.transform = "translate(80px, -385px)";
-    setTimeout(hitWater2, 500);
+    setTimeout(hitWater2, 1000);
   } else if (angle >= 13.5 && angle <= 20) {
     // Rammer den skib 3
     cannonball.style.transform = "translate(135px, -450px)";
-    setTimeout(hitShip3, 500);
+    setTimeout(hitShip3, 1000);
   } else if (angle < -19) {
     cannonball.style.transform = "translate(-250px, -430px)";
   } else if (angle > 20) {
     cannonball.style.transform = "translate(245px, -450px)";
   }
-  setTimeout(newBall, 550); // til at fjerne kuglen, når den har nået sit mål.
+  setTimeout(newBall, 1050); // til at fjerne kuglen, når den har nået sit mål.
 
   document.querySelector("#cannon").style.animationPlayState = "paused"; // Sætter kanonen på pause idet den skuder.
 }
@@ -248,4 +251,45 @@ function gameEnd() {
   // skriver det ind i modal-vinduet.
   document.querySelector("#prize").innerHTML =
     "Du har vundet " + prize + " spil";
+
+  // Brugerens navn til spilsiden
+  document.querySelector("#result").innerHTML = sessionStorage.getItem("title");
+}
+
+function load() {
+  let name = sessionStorage.getItem("title");
+
+  document.querySelector(".start").addEventListener("click", e => {
+    e.preventDefault();
+    if (form.checkValidity()) {
+      post({
+        fullname: name,
+        email: form.elements.emailadresse.value
+      });
+    } else {
+      document.querySelector("#email").classList.add("check_validation");
+      document.querySelector("#checkbox").classList.add("check_validation");
+    }
+  });
+}
+
+// this function adds a new line in our DB that contains the last addet post
+function post(myData) {
+  const postData = JSON.stringify(myData);
+  fetch("https://danskespil-cd72.restdb.io/rest/danskespil", {
+    method: "post",
+    body: postData,
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      "x-apikey": "5ce28dfc780a473c8df5c9cc",
+      "cache-control": "no-cache"
+    }
+  })
+    .then(res => res.json())
+    .then(myData => {
+      console.log(myData);
+      // this clears the form fields when refreshed
+      document.querySelector(".start").disabled = false;
+      form.elements.emailadresse.value = null;
+    });
 }

@@ -64,52 +64,35 @@
           id="name"
           name="fullname"
           required
-          placeholder="John M. Doe"
+          placeholder="Anders Andersen"
         />
       </form>
       <div class="btn-start">
         <button class="start">START SPIL</button>
-        <!-- Dette link skal slettes, når knappen fungere ordentligt -->
-        <a href="spilside.html">Spil</a>
       </div>
     </section>
 
     <script>
       const form = document.querySelector("form");
-      const start = ".start";
-      window.addEventListener("DOMContentLoaded", load);
+
+      window.addEventListener("DOMContentLoaded", init);
 
       ("use strict");
-      function load() {
+
+      function init() {
+        document.querySelector("#name").addEventListener("keyup", sendInfo);
         document.querySelector(".start").addEventListener("click", e => {
           e.preventDefault();
           if (form.checkValidity()) {
-            post({
-              fullname: form.elements.fullname.value
-            });
+            window.location.href = "spilside.html";
+          } else {
+            document.querySelector("#name").classList.add("check_validation");
           }
         });
-        post();
       }
 
-      // this function adds a new line in our DB that contains the last addet post
-      function post(myData) {
-        const postData = JSON.stringify(myData);
-        fetch("https://danskespil-cd72.restdb.io/rest/danskespil", {
-          method: "post",
-          body: postData,
-          headers: {
-            "Content-Type": "application/json; charset=utf-8",
-            "x-apikey": "5ce28dfc780a473c8df5c9cc",
-            "cache-control": "no-cache"
-          }
-        })
-          .then(res => res.json())
-          .then(myData => {
-            // this clears the form fields when refreshed
-            document.querySelector(".start").disabled = false;
-            form.elements.fullname.value = null;
-          });
+      function sendInfo() {
+        sessionStorage.setItem("title", form.elements.fullname.value);
       }
     </script>
   </body>

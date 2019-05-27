@@ -203,6 +203,15 @@ select {
 }
 
 /**-- SVG'EN TIL SPILLET --**/
+.svgbox {
+  margin: 0 auto;
+  position: relative;
+  width: 375px;
+}
+
+svg {
+  position: relative;
+}
 
 .cls-1 {
   fill: #ee7e58;
@@ -520,7 +529,7 @@ select {
 #cannonball {
   position: absolute;
   transform: translate(0, 0);
-  transition: transform 0.5s ease-in;
+  transition: transform 1s ease-in;
 }
 
 /* hitship dækker over de illustrationer der kommer når man rammer et skib */
@@ -530,20 +539,42 @@ select {
 }
 
 /*får skibene til at gynge lidt i vandet*/
-.ship {
+#ship1 {
   transform: rotate(-3deg);
-  animation: ship_kf 3s linear infinite alternate;
+  animation: ship1_kf 3s linear infinite alternate;
   transform-origin: 50% 100%;
   transform-box: fill-box;
-  cursor: pointer;
 }
 
-@keyframes ship_kf {
+#ship3 {
+  transform: rotate(-3deg);
+  animation: ship1_kf 6s linear infinite alternate;
+  transform-origin: 50% 100%;
+  transform-box: fill-box;
+}
+
+@keyframes ship1_kf {
   0% {
-    transform: rotate(-3deg);
+    transform: rotate(-8deg);
   }
   100% {
-    transform: rotate(3deg);
+    transform: rotate(8deg);
+  }
+}
+
+#ship2 {
+  transform: rotate(-7deg);
+  animation: ship2_kf 2s linear infinite alternate;
+  transform-origin: 50% 100%;
+  transform-box: fill-box;
+}
+
+@keyframes ship2_kf {
+  0% {
+    transform: rotate(8deg);
+  }
+  100% {
+    transform: rotate(-8deg);
   }
 }
 
@@ -577,11 +608,50 @@ select {
   color: black;
   position: absolute;
   width: 300px;
-  height: 250px;
-  top: 30vh;
-  left: 10vw;
+  height: 400px;
+  top: 20vh;
   text-align: center;
   visibility: hidden;
   transition: 1s;
   opacity: 0;
+  padding: 2vw;
+  left: 30px;
+}
+
+#result {
+  color: #eaa900;
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  font-size: 0.8em;
+  height: 1em;
+  width: 1em;
+  border: 1px solid grey;
+  border-radius: 20%;
+  position: relative;
+  vertical-align: -2px;
+}
+
+input[type="checkbox"]::before {
+  content: "✔";
+  position: absolute;
+  visibility: hidden;
+}
+input[type="checkbox"]:checked::before {
+  visibility: visible;
+}
+
+input:focus {
+  outline: none;
+}
+
+.check_validation:invalid {
+  border: 1px solid red;
+  background-color: rgb(255, 239, 239);
+}
+
+.check_validation:valid {
+  border: 1px solid #eaa900;
+  background-color: #fdecbf;
 }
