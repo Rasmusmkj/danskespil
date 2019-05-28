@@ -254,6 +254,10 @@ function gameEnd() {
 
   // Brugerens navn til spilsiden
   document.querySelector("#result").innerHTML = sessionStorage.getItem("title");
+
+  //
+  document.querySelector("svg").style.filter = "opacity(0.3)";
+  document.querySelector("#cannon").style.animationPlayState = "paused";
 }
 
 function load() {

@@ -614,12 +614,16 @@ svg {
   visibility: hidden;
   transition: 1s;
   opacity: 0;
-  padding: 2vw;
+  padding: 10px;
   left: 30px;
 }
 
 #result {
   color: #eaa900;
+}
+
+#email {
+  width: 200px;
 }
 
 input[type="checkbox"] {
