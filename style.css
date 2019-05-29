@@ -17,6 +17,10 @@ h2 {
   font-family: "Open Sans", sans-serif;
 }
 
+.goldtext {
+  color: #eaa900;
+}
+
 .indhold {
   text-align: center;
 }
@@ -25,7 +29,7 @@ img {
   width: 90%;
 }
 
-.start {
+button {
   background-color: #eaa900;
   color: white;
   font-family: heliumRegularFont;
@@ -39,6 +43,10 @@ img {
   cursor: pointer;
 }
 
+a {
+  text-decoration: none;
+  color: white;
+}
 .start:hover {
   background-color: #ffbf1d;
   color: white;
@@ -63,7 +71,7 @@ nav .login {
 
 /* burger menu */
 
-a {
+#menu a {
   text-decoration: none;
   color: #232323;
 }
@@ -201,6 +209,36 @@ select {
   margin: 0;
 }
 
+/**-- FØR SPILLET --**/
+
+#game_explainer {
+  background-color: white;
+  color: black;
+  position: absolute;
+  width: 280px;
+  top: 18vh;
+  text-align: center;
+  transition: 1s;
+  padding: 20px;
+  left: 30px;
+}
+
+#game_explainer ul {
+  text-align: left;
+}
+
+#ready {
+  background-color: #eaa900;
+  color: white;
+  font-family: heliumRegularFont;
+  padding: 12px 32px;
+  text-align: center;
+  font-size: 1.5em;
+  margin: 4px 2px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 /**-- SVG'EN TIL SPILLET --**/
 .svgbox {
   margin: 0 auto;
@@ -210,294 +248,303 @@ select {
 
 svg {
   position: relative;
+  opacity: 0.3;
+  border: 3px solid white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .cls-1 {
-  fill: #ee7e58;
+  fill: #99d7e4;
 }
 
 .cls-2 {
-  fill: #f99061;
+  fill: #019aba;
 }
 
 .cls-3 {
-  fill: #db6742;
+  fill: #fcfdfd;
 }
 
 .cls-4 {
-  fill: #fea63a;
+  fill: #fbfcfd;
 }
 
-.cls-5,
-.cls-58 {
-  fill: #ffd845;
+.cls-5 {
+  fill: url(#radial-gradient);
 }
 
+.cls-52,
 .cls-6 {
-  fill: #ffd687;
+  fill: #60bec4;
 }
 
 .cls-7 {
-  fill: #fff;
+  fill: #9f7138;
 }
 
 .cls-8 {
-  opacity: 0.28;
+  fill: #90662d;
 }
 
-.cls-9 {
-  opacity: 0.7;
-}
-
-.cls-10 {
-  fill: url(#sun_gradient);
-}
-
-.cls-11 {
-  fill: url(#water_gradient);
-}
-
-.cls-12 {
-  fill: #fbfdfd;
-}
-
-.cls-13 {
-  fill: #a07138;
-}
-
-.cls-14 {
-  fill: #91662d;
-}
-
-.cls-15,
-.cls-16,
-.cls-17,
+.cls-10,
+.cls-11,
+.cls-13,
 .cls-19,
-.cls-25,
-.cls-26,
-.cls-33,
-.cls-44,
-.cls-54 {
+.cls-20,
+.cls-27,
+.cls-38,
+.cls-48,
+.cls-9 {
   fill: none;
 }
 
-.cls-15 {
+.cls-9 {
   stroke: #7c562c;
 }
 
-.cls-15,
-.cls-16,
-.cls-17,
+.cls-10,
+.cls-11,
+.cls-13,
 .cls-19,
-.cls-25,
-.cls-26,
+.cls-20,
+.cls-21,
+.cls-22,
 .cls-27,
-.cls-28,
-.cls-33,
-.cls-54 {
+.cls-48,
+.cls-9 {
   stroke-miterlimit: 10;
 }
 
-.cls-16,
-.cls-17 {
-  stroke: #8c6133;
+.cls-10,
+.cls-11,
+.cls-13,
+.cls-9 {
+  stroke-width: 1.01px;
 }
 
-.cls-17,
-.cls-33 {
+.cls-10,
+.cls-11 {
+  stroke: #8b6133;
+}
+
+.cls-11,
+.cls-27 {
   stroke-linecap: round;
 }
 
+.cls-12 {
+  fill: #a77f4e;
+}
+
+.cls-13 {
+  stroke: #926c42;
+}
+
+.cls-14 {
+  fill: #86807a;
+}
+
+.cls-15 {
+  fill: #9a9694;
+}
+
+.cls-16 {
+  fill: #bbbaba;
+}
+
+.cls-17 {
+  fill: #c89461;
+}
+
 .cls-18 {
-  fill: #a87f4e;
+  fill: #a47850;
 }
 
 .cls-19 {
-  stroke: #936c42;
+  stroke: #b48357;
 }
 
 .cls-20 {
-  fill: #87807a;
+  stroke: #886245;
 }
 
 .cls-21 {
-  fill: #9b9795;
-}
-
-.cls-22 {
-  fill: #bcbbbb;
-}
-
-.cls-23 {
-  fill: #c99561;
-}
-
-.cls-24 {
-  fill: #a57850;
-}
-
-.cls-25 {
-  stroke: #b58457;
-}
-
-.cls-26 {
-  stroke: #896245;
-}
-
-.cls-27 {
   fill: #161616;
 }
 
-.cls-27,
-.cls-28 {
+.cls-21,
+.cls-22 {
   stroke: #000;
 }
 
-.cls-28 {
+.cls-22 {
   fill: #262626;
 }
 
-.cls-29 {
+.cls-23 {
   fill: #171a1b;
 }
 
-.cls-30 {
+.cls-24 {
   fill: #212020;
 }
 
-.cls-31 {
+.cls-25 {
   fill: #272828;
 }
 
-.cls-32 {
+.cls-26 {
   fill: #444;
 }
 
-.cls-33 {
-  stroke: #f4eed7;
+.cls-27 {
+  stroke: #f3edd6;
   stroke-width: 4px;
 }
 
-.cls-34 {
-  fill: #f7d854;
+.cls-28 {
+  fill: #f6d754;
 }
 
-.cls-35 {
-  fill: #f4eed7;
+.cls-29 {
+  fill: #f3edd6;
 }
 
-.cls-36 {
-  fill: #f9a24b;
+.cls-30 {
+  fill: #f8a14b;
 }
 
-.cls-37 {
-  fill: #ef6a30;
+.cls-31 {
+  fill: #ee6a30;
 }
 
-.cls-38 {
-  fill: #96604b;
+.cls-32 {
+  fill: #95604b;
 }
 
-.cls-39 {
+.cls-33 {
   fill: #1c475a;
 }
 
-.cls-40 {
-  fill: #854623;
+.cls-34 {
+  fill: #844623;
 }
 
-.cls-41 {
+.cls-35 {
   fill: #74371a;
 }
 
-.cls-42 {
+.cls-36 {
   fill: #622e14;
 }
 
-.cls-43 {
-  fill: #d49727;
+.cls-37 {
+  fill: #d39627;
 }
 
-.cls-45 {
+.cls-39 {
   fill: #803a1a;
 }
 
-.cls-46 {
-  fill: #b5811c;
+.cls-40 {
+  fill: #b4801c;
 }
 
-.cls-47 {
+.cls-41 {
   fill: #23231d;
 }
 
-.cls-48 {
+.cls-42 {
   fill: #050505;
 }
 
-.cls-49 {
+.cls-43 {
   fill: #484138;
 }
 
-.cls-50 {
+.cls-44 {
   fill: #292927;
 }
 
-.cls-51 {
-  fill: #f9f9f8;
+.cls-45 {
+  fill: #f8f8f7;
 }
 
-.cls-52 {
+.cls-46 {
   fill: #070700;
 }
 
-.cls-53 {
+.cls-47 {
   fill: #33332d;
 }
 
-.cls-54 {
+.cls-48 {
   stroke: #33332d;
   stroke-width: 1.27px;
 }
 
-.cls-55 {
+.cls-49 {
   fill: #020202;
 }
 
-.cls-56 {
+.cls-50 {
   fill: #1b1b15;
 }
 
-.cls-57 {
+.cls-51 {
   fill: #184840;
 }
 
+.cls-52 {
+  opacity: 0.7;
+}
+
+.cls-53 {
+  fill: #ffd745;
+}
+
+.cls-53,
+.cls-56,
+.cls-57,
 .cls-58,
-.cls-61,
-.cls-62 {
+.cls-59 {
   isolation: isolate;
 }
 
-.cls-59 {
-  fill: #f2eec9;
+.cls-54 {
+  fill: #f1edc8;
 }
 
-.cls-60 {
-  fill: #918e73;
+.cls-55 {
+  fill: #908d73;
 }
 
-.cls-61 {
+.cls-56,
+.cls-58 {
   font-size: 14.43px;
 }
 
-.cls-61,
-.cls-62 {
+.cls-56,
+.cls-57,
+.cls-58,
+.cls-59 {
   fill: #361a00;
-  font-family: OpenSans-Bold, Open Sans;
+}
+
+.cls-56,
+.cls-57 {
+  font-family: OpenSans-Bold, OpenSans Bold;
   font-weight: 700;
 }
 
-.cls-62 {
+.cls-57,
+.cls-59 {
   font-size: 14.43px;
+}
+
+.cls-58,
+.cls-59 {
+  font-family: MyriadPro-Regular, Myriad Pro;
 }
 
 /**-- ekstra til svg'en --**/
@@ -512,6 +559,7 @@ svg {
   transform-origin: 50% 95%;
   transform-box: fill-box;
   cursor: pointer;
+  pointer-events: none;
   animation: cannon_kf 5s linear infinite alternate;
 }
 
@@ -601,6 +649,56 @@ svg {
     background-position: -400%;
   }
 }
+
+.cloud1 {
+  animation: cloud1_kf 15s infinite ease-in-out;
+}
+.cloud2 {
+  animation: cloud2_kf 13s infinite ease-in-out;
+  animation-delay: 8s;
+  transform: translateX(-380px);
+}
+.cloud3 {
+  animation: cloud3_kf 20s infinite ease-in-out;
+  animation-delay: 7s;
+  transform: translateX(-200px);
+}
+.cloud4 {
+  animation: cloud4_kf 16s infinite ease-in-out;
+}
+@keyframes cloud1_kf {
+  0% {
+    transform: translateX(-300px);
+  }
+  100% {
+    transform: translateX(200px);
+  }
+}
+@keyframes cloud2_kf {
+  0% {
+    transform: translateX(-380px);
+  }
+  100% {
+    transform: translateX(100px);
+  }
+}
+@keyframes cloud3_kf {
+  0% {
+    transform: translateX(-200px);
+  }
+  100% {
+    transform: translateX(400px);
+  }
+}
+@keyframes cloud4_kf {
+  0% {
+    transform: translateX(-300px);
+  }
+  100% {
+    transform: translateX(300px);
+  }
+}
+
 /**-- Når man er færdig med spillet--**/
 #end_of_game {
   background-color: white;
@@ -615,6 +713,13 @@ svg {
   opacity: 0;
   padding: 10px;
   left: 30px;
+}
+
+#prize {
+  font-size: 1.4em;
+}
+#slut_spil_2 {
+  display: none;
 }
 
 #result {
@@ -657,4 +762,53 @@ input:focus {
 .check_validation:valid {
   border: 1px solid #eaa900;
   background-color: #fdecbf;
+}
+/* baggrundsanimationer */
+
+#wheel {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  animation: wheel_kf 1s infinite;
+  animation: wheel_kf 2s infinite alternate ease;
+  display: none;
+}
+
+@keyframes wheel_kf {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#crab {
+  position: fixed;
+  bottom: 0px;
+  right: 20px;
+  background-image: url(svg/crab.svg);
+  width: 200px;
+  height: 250px;
+  background-size: 400%;
+  animation: crab_kf 1s steps(4) infinite;
+  display: none;
+}
+
+@keyframes crab_kf {
+  0% {
+    background-position: 0;
+  }
+  100% {
+    background-position: -400%;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  #crab {
+    display: inline;
+  }
+  #wheel {
+    display: inline;
+  }
 }

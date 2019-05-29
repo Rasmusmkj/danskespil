@@ -1,44 +1,23 @@
 "use strict";
 
-//------- SKAL ARBEJDES VIDERE PÅ SENERE
-// window.addEventListener("DOMContentLoaded", getJson);
-
-// // this function gets the json-file from the DB and then displayes the data in the html DOM
-// function getJson() {
-//   fetch("https://danskespil-cd72.restdb.io/rest/danskespil", {
-//     method: "get",
-//     headers: {
-//       "Content-Type": "application/json; charset=utf-8",
-//       "x-apikey": "5ce28dfc780a473c8df5c9cc",
-//       "cache-control": "no-cache"
-//     }
-//   })
-//     .then(getJson => getJson.json())
-//     .then(getJson => {
-//       getJson.forEach(showPerson);
-//       //   console.log(getJson);
-//     });
-// }
-// const form = document.querySelector("form");
-
-// function showPerson(name) {
-//   const template = document.querySelector("template").content;
-//   const clone = template.cloneNode(true);
-//   clone.querySelector("h1").textContent = name.fullname;
-//   document.querySelector("main").appendChild(clone);
-//   console.log(name);
-// }
-
 window.addEventListener("DOMContentLoaded", loadSVG);
 window.addEventListener("DOMContentLoaded", load);
+document.querySelector("#ready").addEventListener("click", readyToPlay);
 const form = document.querySelector("form");
 const start = ".start";
 
 let angle; // vinklen på kanonen
 
+// ---- NÅR MAN ER KLAR TIL AT SPILLE
+function readyToPlay() {
+  document.querySelector("#game_explainer").style.display = "none";
+  document.querySelector("#cannon").style.pointerEvents = "auto";
+  document.querySelector("svg").style.opacity = "1";
+}
+
 // ---- LOADER SVG'EN
 function loadSVG() {
-  fetch("svg/pirategame.svg")
+  fetch("svg/pirategame_new.svg")
     .then(response => response.text())
     .then(svgdata => {
       document
@@ -72,6 +51,14 @@ function initSVG() {
       if (count == 3) {
         setTimeout(gameEnd, 1500);
       }
+    }
+
+    if (count == 1) {
+      document.querySelector("#shot1").style.display = "none";
+    } else if (count == 2) {
+      document.querySelector("#shot2").style.display = "none";
+    } else if (count == 3) {
+      document.querySelector("#shot3").style.display = "none";
     }
   });
 }
@@ -250,16 +237,22 @@ function gameEnd() {
 
   // skriver det ind i modal-vinduet.
   document.querySelector("#prize").innerHTML =
-    "Du har vundet " + prize + " spil";
+    "Du har vundet " + prize + " gratis spil!";
 
   // Brugerens navn til spilsiden
   document.querySelector("#result").innerHTML = sessionStorage.getItem("title");
 
-  //
+  // Gør spillet i baggrunden mindre tydelig og stopper kanonens bevæglser
   document.querySelector("svg").style.filter = "opacity(0.3)";
   document.querySelector("#cannon").style.animationPlayState = "paused";
 }
 
+function dataIsSend() {
+  document.querySelector("#slut_spil_1").style.display = "none";
+  document.querySelector("#slut_spil_2").style.display = "block";
+}
+
+// ----  POSTER DATAERNE
 function load() {
   let name = sessionStorage.getItem("title");
 
@@ -296,4 +289,5 @@ function post(myData) {
       document.querySelector(".start").disabled = false;
       form.elements.emailadresse.value = null;
     });
+  document.querySelector(".start").addEventListener("click", dataIsSend);
 }
