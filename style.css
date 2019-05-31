@@ -13,10 +13,13 @@ h1 {
   font-size: 2.7em;
 }
 h2 {
-  font-size: 1em;
+  font-size: 1.4em;
   font-family: "Open Sans", sans-serif;
 }
 
+p {
+  font-size: 1.4em;
+}
 .goldtext {
   color: #eaa900;
 }
@@ -25,7 +28,7 @@ h2 {
   text-align: center;
 }
 
-img {
+.indhold img {
   width: 90%;
 }
 
@@ -183,6 +186,7 @@ nav .login {
 /* ------ form --------- */
 
 input[type="text"],
+input[type="email"],
 select {
   width: 40%;
   padding: 12px 10px;
@@ -199,7 +203,7 @@ select {
 .infografik {
   display: block;
   margin: 30px auto;
-  width: 100vw;
+  width: 80vw;
   max-width: 800px;
 }
 
@@ -705,8 +709,8 @@ svg {
   color: black;
   position: absolute;
   width: 300px;
-  height: 400px;
-  top: 20vh;
+  height: 550px;
+  top: 15vh;
   text-align: center;
   visibility: hidden;
   transition: 1s;
@@ -716,7 +720,7 @@ svg {
 }
 
 #prize {
-  font-size: 1.4em;
+  font-size: 1.6em;
 }
 #slut_spil_2 {
   display: none;
@@ -763,7 +767,11 @@ input:focus {
   border: 1px solid #eaa900;
   background-color: #fdecbf;
 }
-/* baggrundsanimationer
+
+#kiste {
+  width: 150px;
+}
+/* baggrundsanimationer */
 
 #wheel {
   position: absolute;
@@ -784,15 +792,15 @@ input:focus {
 }
 
 #crab {
-  position: fixed;
-  bottom: 0px;
-  right: 20px;
+  position: absolute;
+  top: 60px;
+  /* right: 30px; */
   background-image: url(svg/crab.svg);
-  width: 200px;
-  height: 250px;
+  width: 100px;
+  height: 125px;
   background-size: 400%;
   animation: crab_kf 1s steps(4) infinite;
-  display: none;
+  display: inline;
 }
 
 @keyframes crab_kf {
@@ -803,12 +811,3 @@ input:focus {
     background-position: -400%;
   }
 }
-
-@media only screen and (min-width: 600px) {
-  #crab {
-    display: inline;
-  }
-  #wheel {
-    display: inline;
-  }
-} */

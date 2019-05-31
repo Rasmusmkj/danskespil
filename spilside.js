@@ -33,6 +33,9 @@ function loadSVG() {
 function initSVG() {
   findAngle(); // til at finde vinklen på kanonen.
   let count = 0; // til at tælle antalet af skud.
+  document.querySelector("#baggrundlyd").play();
+  document.querySelector("#baggrundlyd").volume = 0.3;
+  document.querySelector("#baggrundlyd").currentTime = 8;
 
   // Når der bliver klikket på kannonen:
   document.querySelector("#cannon").addEventListener("click", () => {
@@ -98,6 +101,7 @@ function findAngle() {
 // ----  AFFYRER KANONEN
 function fireCannon() {
   let cannonball = document.querySelector("#cannonball");
+  document.querySelector("#kanonlyd").play();
 
   // Udfaldet af hvor man rammer, afhænger af kannonens vinkel.
   // Vi placerer derfor kanonkuglen der, hvor det passer med vinklen på kanonen.
@@ -158,7 +162,11 @@ function hitShip3() {
 // ----  RAMMER VANDET I VENSTRE SIDE
 function hitWater1() {
   let hitsWater = document.querySelector("#hits_water");
-
+  document.querySelector("#plasklyd").play();
+  document.querySelector("#plasklyd").addEventListener("ended", () => {
+    document.querySelector("#taberlyd").play();
+    document.querySelector("#taberlyd").currentTime = 1;
+  });
   // Sørger for at animationen er synlig.
   hitsWater.style.display = "inline";
   // tilføjer den class der har animationen.
@@ -173,6 +181,11 @@ function hitWater1() {
 // ----  RAMMER VANDET I HØJRE SIDE
 function hitWater2() {
   let hitsWater = document.querySelector("#hits_water");
+  document.querySelector("#plasklyd").play();
+  document.querySelector("#plasklyd").addEventListener("ended", () => {
+    document.querySelector("#taberlyd").play();
+    document.querySelector("#taberlyd").currentTime = 1;
+  });
 
   // Sørger for at animationen er synlig.
   hitsWater.style.display = "inline";
@@ -206,6 +219,13 @@ function newBall() {
 
 // ---- TILFÆLDIG PRÆMIE FOR AT RAMME ET AF SKIBENE
 function prepareRandomPrize(shipwreck) {
+  document.querySelector("#eksplosionlyd").play();
+
+  document.querySelector("#eksplosionlyd").addEventListener("ended", () => {
+    document.querySelector("#vinderlyd").play();
+    document.querySelector("#vinderlyd").currentTime = 1.5;
+    document.querySelector("#vinderlyd").volume = 1;
+  });
   let bannertext = shipwreck.querySelector(".bannertext");
   if (bannertext.innerHTML == "0 point") {
     // sørger for at der er 3 forskellige tal (husk at nul er medregnet).
