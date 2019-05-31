@@ -4,14 +4,17 @@ window.addEventListener("DOMContentLoaded", loadSVG);
 window.addEventListener("DOMContentLoaded", load);
 document.querySelector("#ready").addEventListener("click", readyToPlay);
 const form = document.querySelector("form");
-const start = ".start";
+//const start = ".start"; // den class der sidder på knappen, hvor man bekræfter sin email.
 
 let angle; // vinklen på kanonen
 
 // ---- NÅR MAN ER KLAR TIL AT SPILLE
 function readyToPlay() {
+  // fjerne modalvinduet (forklaring til spil)
   document.querySelector("#game_explainer").style.display = "none";
+  // Gør det muligt at klikke på kanonen.
   document.querySelector("#cannon").style.pointerEvents = "auto";
+  // Gør svg/spillet fuldt synligt.
   document.querySelector("svg").style.opacity = "1";
 }
 
@@ -53,6 +56,8 @@ function initSVG() {
       }
     }
 
+    // I spillet er der 3 kanonkugler der indikerer hvor mange skud man har tilbage.
+    // herunder fjernes en kanonkugle hver gang der bliver skudt.
     if (count == 1) {
       document.querySelector("#shot1").style.display = "none";
     } else if (count == 2) {
@@ -247,8 +252,11 @@ function gameEnd() {
   document.querySelector("#cannon").style.animationPlayState = "paused";
 }
 
+// ----  EFTER BRUGERENS DATA ER BLEVET POSTET
 function dataIsSend() {
+  // fjerner den første del af modalvinduet (der hvor brugeren skriver sin mail)
   document.querySelector("#slut_spil_1").style.display = "none";
+  // indsætter den anden del af modalvindiuet (Tak-beskeden og link til quick)
   document.querySelector("#slut_spil_2").style.display = "block";
 }
 
@@ -288,6 +296,6 @@ function post(myData) {
       // this clears the form fields when refreshed
       document.querySelector(".start").disabled = false;
       form.elements.emailadresse.value = null;
+      dataIsSend(); //åbner det sidste modalvindue, når dataerne er blevet postet.
     });
-  document.querySelector(".start").addEventListener("click", dataIsSend);
 }

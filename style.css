@@ -763,7 +763,7 @@ input:focus {
   border: 1px solid #eaa900;
   background-color: #fdecbf;
 }
-/* baggrundsanimationer */
+/* baggrundsanimationer
 
 #wheel {
   position: absolute;
@@ -811,4 +811,4 @@ input:focus {
   #wheel {
     display: inline;
   }
-}
+} */
