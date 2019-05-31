@@ -130,9 +130,9 @@ function fireCannon() {
   } else if (angle > 20) {
     cannonball.style.transform = "translate(245px, -450px)";
   }
-  setTimeout(newBall, 1050); // til at fjerne kuglen, når den har nået sit mål.
+  setTimeout(newBall, 1000); // til at fjerne kuglen, når den har nået sit mål.
 
-  document.querySelector("#cannon").style.animationPlayState = "paused"; // Sætter kanonen på pause idet den skuder.
+  document.querySelector("#cannon").style.animationPlayState = "paused"; // Sætter kanonen på pause idet den skyder.
 }
 
 // ----  RAMMER DET FØRSTE SKIB
