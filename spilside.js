@@ -1,15 +1,22 @@
 "use strict";
+window.addEventListener("DOMContentLoaded", init);
 
-window.addEventListener("DOMContentLoaded", loadSVG);
-window.addEventListener("DOMContentLoaded", load);
-document.querySelector("#ready").addEventListener("click", readyToPlay);
 const form = document.querySelector("form");
-//const start = ".start"; // den class der sidder på knappen, hvor man bekræfter sin email.
-
 let angle; // vinklen på kanonen
+let count = 0; // til at tælle antallet af skud.
+
+function init() {
+  loadSVG();
+  preparePost();
+  document.querySelector("#ready").addEventListener("click", readyToPlay);
+}
 
 // ---- NÅR MAN ER KLAR TIL AT SPILLE
 function readyToPlay() {
+  // Baggrundsmusik
+  document.querySelector("#baggrundlyd").play();
+  document.querySelector("#baggrundlyd").volume = 0.3;
+  document.querySelector("#baggrundlyd").currentTime = 8;
   // fjerne modalvinduet (forklaring til spil)
   document.querySelector("#game_explainer").style.display = "none";
   // Gør det muligt at klikke på kanonen.
@@ -20,55 +27,48 @@ function readyToPlay() {
 
 // ---- LOADER SVG'EN
 function loadSVG() {
-  fetch("svg/pirategame_new.svg")
+  fetch("svg/game.svg")
     .then(response => response.text())
     .then(svgdata => {
       document
         .querySelector("#svg_pirategame")
         .insertAdjacentHTML("afterbegin", svgdata);
-      initSVG();
+      // Når der bliver klikket på kannonen:
+      document.querySelector("#cannon").addEventListener("click", prepareShot);
     });
 }
 
-function initSVG() {
-  findAngle(); // til at finde vinklen på kanonen.
-  let count = 0; // til at tælle antalet af skud.
-  document.querySelector("#baggrundlyd").play();
-  document.querySelector("#baggrundlyd").volume = 0.3;
-  document.querySelector("#baggrundlyd").currentTime = 8;
+// ----  FORBEREDER SKUD AF KANONEN
+function prepareShot() {
+  count += 1; //Tæller hver gang der bliver klikket på kanonen.
 
-  // Når der bliver klikket på kannonen:
-  document.querySelector("#cannon").addEventListener("click", () => {
-    count += 1; //Tæller hver gang der bliver klikket på kanonen.
+  // Man kan maks skyde 3 gange.
+  if (count < 4) {
+    // når kanonenkuglen er blevet skudt, fjerner vi den så man ikke kan se den, idet den bevæger sig tilbage til kanonen
+    // man nå man så klikker igen på kanonen skal man kunne se den igen.
+    cannonball.style.visibility = "visible";
 
-    // Man kan maks skyde 3 gange.
-    if (count < 4) {
-      // når kanonenkuglen er blevet skudt, fjerner vi den så man ikke kan se den, idet den bevæger sig tilbage til kanonen
-      // man nå man så klikker igen på kanonen skal man kunne se den igen.
-      cannonball.style.display = "inline";
+    // Finder den nuværende vinkel.
+    findAngle();
 
-      // Finder den nuværende vinkel.
-      findAngle();
+    // Affyrer kannonen.
+    fireCannon();
 
-      // Affyrer kannonen.
-      fireCannon();
-
-      // Efter den 3. gang der bliver skudt skal der dukke et modal-vindue op.
-      if (count == 3) {
-        setTimeout(gameEnd, 1500);
-      }
+    // Efter den 3. gang der bliver skudt skal der dukke et modal-vindue op.
+    if (count == 3) {
+      setTimeout(gameEnd, 1500);
     }
+  }
 
-    // I spillet er der 3 kanonkugler der indikerer hvor mange skud man har tilbage.
-    // herunder fjernes en kanonkugle hver gang der bliver skudt.
-    if (count == 1) {
-      document.querySelector("#shot1").style.display = "none";
-    } else if (count == 2) {
-      document.querySelector("#shot2").style.display = "none";
-    } else if (count == 3) {
-      document.querySelector("#shot3").style.display = "none";
-    }
-  });
+  // I spillet er der 3 kanonkugler der indikerer hvor mange skud man har tilbage.
+  // herunder fjernes en kanonkugle hver gang der bliver skudt.
+  if (count == 1) {
+    document.querySelector("#shot1").style.display = "none";
+  } else if (count == 2) {
+    document.querySelector("#shot2").style.display = "none";
+  } else if (count == 3) {
+    document.querySelector("#shot3").style.display = "none";
+  }
 }
 
 // ----  FINDER VINKLEN PÅ KANONEN
@@ -98,9 +98,11 @@ function findAngle() {
 
   return angle;
 }
+
 // ----  AFFYRER KANONEN
 function fireCannon() {
   let cannonball = document.querySelector("#cannonball");
+
   document.querySelector("#kanonlyd").play();
 
   // Udfaldet af hvor man rammer, afhænger af kannonens vinkel.
@@ -140,7 +142,7 @@ function hitShip1() {
   document.querySelector("#ship1").style.visibility = "hidden";
   document.querySelector("#hitship1").style.visibility = "visible";
   let shipwreck = document.querySelector("#hitship1");
-  prepareRandomPrize(shipwreck);
+  randomPrize(shipwreck);
 }
 
 // ----  RAMMER DET ANDET SKIB
@@ -148,7 +150,7 @@ function hitShip2() {
   document.querySelector("#ship2").style.visibility = "hidden";
   document.querySelector("#hitship2").style.visibility = "visible";
   let shipwreck = document.querySelector("#hitship2");
-  prepareRandomPrize(shipwreck);
+  randomPrize(shipwreck);
 }
 
 // ----  RAMMER DET TREDJE SKIB
@@ -156,7 +158,7 @@ function hitShip3() {
   document.querySelector("#ship3").style.visibility = "hidden";
   document.querySelector("#hitship3").style.visibility = "visible";
   let shipwreck = document.querySelector("#hitship3");
-  prepareRandomPrize(shipwreck);
+  randomPrize(shipwreck);
 }
 
 // ----  RAMMER VANDET I VENSTRE SIDE
@@ -212,18 +214,19 @@ function stopHitWater(hitsWater) {
 
 // ----  SÆTTER KANONKUGLEN TILBAGE TIL DENS UDGANGSPUNKT
 function newBall() {
-  cannonball.style.display = "none";
+  let cannonball = document.querySelector("#cannonball");
+  cannonball.style.visibility = "hidden";
   cannonball.style.transform = "translate(0, 0)";
   document.querySelector("#cannon").style.animationPlayState = "running";
 }
 
 // ---- TILFÆLDIG PRÆMIE FOR AT RAMME ET AF SKIBENE
-function prepareRandomPrize(shipwreck) {
+function randomPrize(shipwreck) {
   document.querySelector("#eksplosionlyd").play();
 
   document.querySelector("#eksplosionlyd").addEventListener("ended", () => {
     document.querySelector("#vinderlyd").play();
-    document.querySelector("#vinderlyd").currentTime = 1.5;
+    document.querySelector("#vinderlyd").currentTime = 0.1;
     document.querySelector("#vinderlyd").volume = 1;
   });
   let bannertext = shipwreck.querySelector(".bannertext");
@@ -272,19 +275,11 @@ function gameEnd() {
   document.querySelector("#cannon").style.animationPlayState = "paused";
 }
 
-// ----  EFTER BRUGERENS DATA ER BLEVET POSTET
-function dataIsSend() {
-  // fjerner den første del af modalvinduet (der hvor brugeren skriver sin mail)
-  document.querySelector("#slut_spil_1").style.display = "none";
-  // indsætter den anden del af modalvindiuet (Tak-beskeden og link til quick)
-  document.querySelector("#slut_spil_2").style.display = "block";
-}
-
 // ----  POSTER DATAERNE
-function load() {
+function preparePost() {
   let name = sessionStorage.getItem("title");
 
-  document.querySelector(".start").addEventListener("click", e => {
+  document.querySelector(".confirm").addEventListener("click", e => {
     e.preventDefault();
     if (form.checkValidity()) {
       post({
@@ -299,8 +294,8 @@ function load() {
 }
 
 // this function adds a new line in our DB that contains the last addet post
-function post(myData) {
-  const postData = JSON.stringify(myData);
+function post(userData) {
+  const postData = JSON.stringify(userData);
   fetch("https://danskespil-cd72.restdb.io/rest/danskespil", {
     method: "post",
     body: postData,
@@ -311,11 +306,19 @@ function post(myData) {
     }
   })
     .then(res => res.json())
-    .then(myData => {
-      console.log(myData);
+    .then(data => {
+      console.log(data);
       // this clears the form fields when refreshed
-      document.querySelector(".start").disabled = false;
+      document.querySelector(".confirm").disabled = false;
       form.elements.emailadresse.value = null;
       dataIsSend(); //åbner det sidste modalvindue, når dataerne er blevet postet.
     });
+}
+
+// ----  EFTER BRUGERENS DATA ER BLEVET POSTET
+function dataIsSend() {
+  // fjerner den første del af modalvinduet (der hvor brugeren skriver sin mail)
+  document.querySelector("#slut_spil_1").style.display = "none";
+  // indsætter den anden del af modalvindiuet (Tak-beskeden og link til quick)
+  document.querySelector("#slut_spil_2").style.display = "block";
 }

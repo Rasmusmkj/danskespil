@@ -10,7 +10,7 @@ body {
 }
 
 h1 {
-  font-size: 2.7em;
+  font-size: 2.4em;
 }
 h2 {
   font-size: 1.4em;
@@ -68,7 +68,7 @@ nav img {
 }
 
 nav .login {
-  margin-top: -2vw;
+  margin-top: -28px;
   float: right;
 }
 
@@ -82,7 +82,7 @@ nav .login {
 #menuToggle {
   display: block;
   position: relative;
-  top: 3vw;
+  top: 20px;
   left: 3vw;
   z-index: 1;
 }
@@ -796,11 +796,11 @@ input:focus {
   top: 60px;
   /* right: 30px; */
   background-image: url(svg/crab.svg);
-  width: 100px;
-  height: 125px;
+  width: 70px;
+  height: 95px;
   background-size: 400%;
   animation: crab_kf 1s steps(4) infinite;
-  display: inline;
+  display: inline-block;
 }
 
 @keyframes crab_kf {
