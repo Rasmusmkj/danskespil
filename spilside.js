@@ -4,8 +4,10 @@ window.addEventListener("DOMContentLoaded", init);
 const form = document.querySelector("form");
 let angle; // vinklen på kanonen
 let count = 0; // til at tælle antallet af skud.
+let jsonData = [];
 
 function init() {
+  getJson();
   loadSVG();
   preparePost();
   document.querySelector("#ready").addEventListener("click", readyToPlay);
@@ -23,6 +25,20 @@ function readyToPlay() {
   document.querySelector("#cannon").style.pointerEvents = "auto";
   // Gør svg/spillet fuldt synligt.
   document.querySelector("svg").style.opacity = "1";
+
+  // klikker på skibet
+
+  document.querySelectorAll(".ship").forEach(shippet => {
+    shippet.addEventListener("click", wrongClick);
+  });
+}
+
+// ---- Når der er klikket på skibene istedet for kanonen
+
+function wrongClick() {
+  console.log("der er klikket");
+  document.querySelector("#haand").style.display = "block";
+  document.querySelector("#haand").addEventListener("click", prepareShot);
 }
 
 // ---- LOADER SVG'EN
@@ -40,6 +56,8 @@ function loadSVG() {
 
 // ----  FORBEREDER SKUD AF KANONEN
 function prepareShot() {
+  document.querySelector("#haand").style.display = "none";
+
   count += 1; //Tæller hver gang der bliver klikket på kanonen.
 
   // Man kan maks skyde 3 gange.
@@ -101,6 +119,11 @@ function findAngle() {
 
 // ----  AFFYRER KANONEN
 function fireCannon() {
+  document.querySelector("#smoke").style.display = "block";
+  document.querySelector("#smoke").addEventListener("animationend", () => {
+    document.querySelector("#smoke").style.display = "none";
+  });
+
   let cannonball = document.querySelector("#cannonball");
 
   document.querySelector("#kanonlyd").play();
@@ -282,10 +305,20 @@ function preparePost() {
   document.querySelector(".confirm").addEventListener("click", e => {
     e.preventDefault();
     if (form.checkValidity()) {
-      post({
-        fullname: name,
-        email: form.elements.emailadresse.value
-      });
+      let abc = jsonData.findIndex(
+        x => x.email === form.elements.emailadresse.value
+      );
+      if (abc === -1) {
+        console.log("Welcome aboard");
+        post({
+          fullname: name,
+          email: form.elements.emailadresse.value
+        });
+      } else {
+        alert("E-mailen eksisterer allerede");
+        document.querySelector("#wrongMail").innerHTML =
+          "E-mail eksisterer allerede";
+      }
     } else {
       document.querySelector("#email").classList.add("check_validation");
       document.querySelector("#checkbox").classList.add("check_validation");
@@ -321,4 +354,20 @@ function dataIsSend() {
   document.querySelector("#slut_spil_1").style.display = "none";
   // indsætter den anden del af modalvindiuet (Tak-beskeden og link til quick)
   document.querySelector("#slut_spil_2").style.display = "block";
+}
+
+function getJson() {
+  fetch("https://danskespil-cd72.restdb.io/rest/danskespil", {
+    method: "get",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      "x-apikey": "5ce28dfc780a473c8df5c9cc",
+      "cache-control": "no-cache"
+    }
+  })
+    .then(getJson => getJson.json())
+    .then(getJson => {
+      console.log(getJson);
+      jsonData = getJson;
+    });
 }

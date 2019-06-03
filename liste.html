@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Liste</title>
+</head>
+<section class="liste">
+
+    <main></main>
+    <template>
+    <article>
+        <h1></h1>
+             <h2></h2>
+        
+    </article>
+</template>
+
+</section>
+
+<body>
+
+
+    <script>
+        "use strict";
+        window.addEventListener("DOMContentLoaded", getJson);
+
+
+        // this function gets the jason-file from the DB and then displayes the data in the html DOM
+        function getJson() {
+            fetch("https://danskespil-cd72.restdb.io/rest/danskespil", {
+                    method: "get",
+                    headers: {
+                        "Content-Type": "application/json; charset=utf-8",
+                        "x-apikey": "5ce28dfc780a473c8df5c9cc",
+                        "cache-control": "no-cache"
+                    }
+                })
+                .then(getJson => getJson.json())
+                .then(getJson => {
+                    getJson.forEach(visListe);
+                })
+        }
+
+        function visListe(danskespil) {
+            const template = document.querySelector("template").content;
+            const clone = template.cloneNode(true);
+            clone.querySelector("h1").textContent = danskespil.fullname;
+            clone.querySelector("h2").textContent = danskespil.email;
+
+            document.querySelector("main").appendChild(clone);
+
+            console.log(danskespil);
+        }
+    </script>
+</body>
+
+</html>

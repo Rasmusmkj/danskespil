@@ -6,12 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body id="spilsiden">
     <!-- SELVE SPILLET -->
     <div class="svgbox">
       <div id="svg_pirategame"></div>
       <div id="hits_water"></div>
+      <div id="haand"></div>
+      <div id="smoke"></div>
 
       <audio id="baggrundlyd" src="lyde/baggrund2.mp3"></audio>
       <audio id="kanonlyd" src="lyde/kanon.mp3"></audio>
@@ -54,6 +60,7 @@
               required
               placeholder="anders@andersen.dk"
             />
+            <p id="wrongMail"></p>
             <input id="checkbox" type="checkbox" required name="checkbox" />
             <label class="checkbox" for="checkbox">
               Jeg accepterer
@@ -69,12 +76,15 @@
         </div>
         <!-- Modal-vindue efter man har trykket bekræft -->
         <div id="slut_spil_2">
-          <h1>Din mail er bekræftet</h1>
+          <h1>Din e-mail er bekræftet</h1>
           <img id="kiste" src="svg/kiste.svg" alt="" />
           <p>
             Vi sender dig en e-mail med videre information om hvordan du
             indløser din præmie
           </p>
+          <div class="infografik">
+            <img src="svg/inf_graa.svg" />
+          </div>
           <p>Brug din gevinst på:</p>
           <button>
             <a href="https://danskespil.dk/quick?intcmp=top_menu_quick_brand"

@@ -12,24 +12,33 @@ body {
 h1 {
   font-size: 2.4em;
 }
+
 h2 {
   font-size: 1.4em;
+  font-family: "Open Sans", sans-serif;
+}
+
+h3 {
+  font-size: 1em;
   font-family: "Open Sans", sans-serif;
 }
 
 p {
   font-size: 1.4em;
 }
+
 .goldtext {
   color: #eaa900;
 }
 
 .indhold {
+  padding-top: 5vw;
   text-align: center;
 }
 
 .indhold img {
   width: 90%;
+  max-width: 600px;
 }
 
 button {
@@ -40,26 +49,50 @@ button {
   text-align: center;
   text-decoration: none;
   font-size: 1.5em;
-  margin: 4px 2px;
+  margin: 20px 2px;
   border-radius: 4px;
   transition-duration: 0.4s;
   cursor: pointer;
+  border: none;
 }
 
 a {
   text-decoration: none;
   color: white;
 }
+
 .start:hover {
   background-color: #ffbf1d;
   color: white;
   cursor: pointer;
 }
 
+/*  LISTE */
+
+.liste h2 {
+  margin-top: 40px;
+}
+
+.liste article {
+  display: grid;
+  margin-right: 5vw;
+  margin-left: 5vw;
+}
+
+@media screen and (min-width: 580px) {
+  .liste article {
+    padding-left: 5vw;
+    grid-gap: 2vw;
+    grid-template-columns: repeat(2, 2fr);
+    grid-template-rows: repeat(1, 1fr);
+    border: 1px solid black;
+  }
+}
+
 /* NAV */
 
 nav img {
-  padding-left: 5vw;
+  padding-left: 80px;
   margin-top: -1vw;
   display: block;
   margin-left: auto;
@@ -69,6 +102,7 @@ nav img {
 
 nav .login {
   margin-top: -28px;
+  margin-right: 20px;
   float: right;
 }
 
@@ -95,15 +129,17 @@ nav .login {
   top: -20px;
   left: -20px;
   cursor: pointer;
-  opacity: 0; /* hide this */
-  z-index: 2; /* and place it over the hamburger */
-
+  opacity: 0;
+  /* hide this */
+  z-index: 2;
+  /* and place it over the hamburger */
   -webkit-touch-callout: none;
 }
 
 /*
  * Just a quick hamburger
  */
+
 #menuToggle span {
   display: block;
   width: 33px;
@@ -131,6 +167,7 @@ nav .login {
  * Transform all the slices of hamburger
  * into a crossmark.
  */
+
 #menuToggle input:checked ~ span {
   opacity: 1;
   transform: rotate(45deg) translate(-2px, -1px);
@@ -140,6 +177,7 @@ nav .login {
 /*
  * But let's hide the middle one.
  */
+
 #menuToggle input:checked ~ span:nth-last-child(3) {
   opacity: 0;
   transform: rotate(0deg) scale(0.2, 0.2);
@@ -148,6 +186,7 @@ nav .login {
 /*
  * Ohyeah and the last one should go the other direction
  */
+
 #menuToggle input:checked ~ span:nth-last-child(2) {
   transform: rotate(-45deg) translate(0, -1px);
 }
@@ -156,6 +195,7 @@ nav .login {
  * Make this absolute positioned
  * at the top left of the screen
  */
+
 #menu {
   position: absolute;
   width: 300px;
@@ -179,6 +219,7 @@ nav .login {
 /*
  * And let's slide it in from the left
  */
+
 #menuToggle input:checked ~ ul {
   transform: none;
 }
@@ -200,10 +241,10 @@ select {
   margin-right: auto;
 }
 
-.infografik {
+.infografik img {
   display: block;
   margin: 30px auto;
-  width: 80vw;
+  width: 300px;
   max-width: 800px;
 }
 
@@ -244,6 +285,7 @@ select {
 }
 
 /**-- SVG'EN TIL SPILLET --**/
+
 .svgbox {
   margin: 0 auto;
   position: relative;
@@ -558,6 +600,7 @@ svg {
 }
 
 /* Kanonen skal dreje fra side til side. */
+
 #cannon {
   transform: rotate(-30deg);
   transform-origin: 50% 95%;
@@ -576,7 +619,9 @@ svg {
     transform: rotate(30deg);
   }
 }
+
 /* gør at man kan se kanonkuglen blive skudt afsted */
+
 #cannonball {
   position: absolute;
   transform: translate(0, 0);
@@ -584,12 +629,15 @@ svg {
 }
 
 /* hitship dækker over de illustrationer der kommer når man rammer et skib */
+
 /* de skal være skjulte til at starte med */
+
 .hitship {
   visibility: hidden;
 }
 
 /*får skibene til at gynge lidt i vandet*/
+
 #ship1 {
   transform: rotate(-3deg);
   animation: ship1_kf 3s linear infinite alternate;
@@ -630,6 +678,7 @@ svg {
 }
 
 /* Når kanonen rammer vandet */
+
 #hits_water {
   position: absolute;
   background-image: url(svg/splask_vand.svg);
@@ -657,19 +706,23 @@ svg {
 .cloud1 {
   animation: cloud1_kf 15s infinite ease-in-out;
 }
+
 .cloud2 {
   animation: cloud2_kf 13s infinite ease-in-out;
   animation-delay: 8s;
   transform: translateX(-380px);
 }
+
 .cloud3 {
   animation: cloud3_kf 20s infinite ease-in-out;
   animation-delay: 7s;
   transform: translateX(-200px);
 }
+
 .cloud4 {
   animation: cloud4_kf 16s infinite ease-in-out;
 }
+
 @keyframes cloud1_kf {
   0% {
     transform: translateX(-300px);
@@ -678,6 +731,7 @@ svg {
     transform: translateX(200px);
   }
 }
+
 @keyframes cloud2_kf {
   0% {
     transform: translateX(-380px);
@@ -686,6 +740,7 @@ svg {
     transform: translateX(100px);
   }
 }
+
 @keyframes cloud3_kf {
   0% {
     transform: translateX(-200px);
@@ -694,6 +749,7 @@ svg {
     transform: translateX(400px);
   }
 }
+
 @keyframes cloud4_kf {
   0% {
     transform: translateX(-300px);
@@ -702,8 +758,51 @@ svg {
     transform: translateX(300px);
   }
 }
+/**-- hånd --**/
+#haand {
+  position: absolute;
+  background-image: url(svg/haand.svg);
+  top: 625px;
+  left: 153px;
+  width: 167.86px;
+  height: 146.36px;
+  animation: haand_kf 0.5s infinite alternate;
+  display: none;
+}
+@keyframes haand_kf {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/** RØGSKY **/
+
+#smoke {
+  position: absolute;
+  background-image: url(svg/Smoke2.svg);
+  top: 580px;
+  left: 70px;
+  width: 250px;
+  height: 250px;
+  background-size: 400%;
+  display: none;
+  animation: smoke_kf 0.5s steps(4) 1;
+}
+
+@keyframes smoke_kf {
+  0% {
+    background-position: 0;
+  }
+  100% {
+    background-position: -400%;
+  }
+}
 
 /**-- Når man er færdig med spillet--**/
+
 #end_of_game {
   background-color: white;
   color: black;
@@ -722,6 +821,7 @@ svg {
 #prize {
   font-size: 1.6em;
 }
+
 #slut_spil_2 {
   display: none;
 }
@@ -742,14 +842,17 @@ input[type="checkbox"] {
   border: 1px solid grey;
   border-radius: 20%;
   position: relative;
-  vertical-align: -2px;
+  /* vertical-align: -2px; */
 }
 
 input[type="checkbox"]::before {
   content: "✔";
+  width: 1px;
+  right: 10px;
   position: absolute;
   visibility: hidden;
 }
+
 input[type="checkbox"]:checked::before {
   visibility: visible;
 }
@@ -771,6 +874,11 @@ input:focus {
 #kiste {
   width: 150px;
 }
+
+#wrongMail {
+  color: red;
+}
+
 /* baggrundsanimationer */
 
 #wheel {
@@ -793,7 +901,8 @@ input:focus {
 
 #crab {
   position: absolute;
-  top: 60px;
+  top: 80px;
+  margin-left: 20px;
   /* right: 30px; */
   background-image: url(svg/crab.svg);
   width: 70px;
@@ -809,5 +918,46 @@ input:focus {
   }
   100% {
     background-position: -400%;
+  }
+}
+@media screen and (min-width: 700px) {
+  #crab {
+    top: 90px;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .indhold {
+    padding-top: 5vw;
+    margin-bottom: 45vw;
+  }
+  .content_højre {
+    margin-left: 2vw;
+    float: left;
+    width: 41%;
+    padding-top: 3vw;
+    padding-bottom: 3vw;
+    padding-left: 5vw;
+    margin-top: 4.5vw;
+    padding-right: 2vw;
+    background-color: #672d70;
+    text-align: left;
+  }
+  .content_venstre {
+    float: right;
+    width: 48%;
+  }
+
+  input[type="text"] {
+    margin-left: 0px;
+  }
+  #crab {
+    top: 110px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  #crab {
+    top: 140px;
   }
 }
