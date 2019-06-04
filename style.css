@@ -768,6 +768,7 @@ svg {
   height: 146.36px;
   animation: haand_kf 0.5s infinite alternate;
   display: none;
+  pointer-events: none;
 }
 @keyframes haand_kf {
   0% {

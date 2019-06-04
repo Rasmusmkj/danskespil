@@ -27,18 +27,14 @@ function readyToPlay() {
   document.querySelector("svg").style.opacity = "1";
 
   // klikker på skibet
-
   document.querySelectorAll(".ship").forEach(shippet => {
     shippet.addEventListener("click", wrongClick);
   });
 }
 
-// ---- Når der er klikket på skibene istedet for kanonen
-
+// ---- VED KLIK PÅ ET AF SKIBENE I STEDET FOR KANONEN
 function wrongClick() {
-  console.log("der er klikket");
   document.querySelector("#haand").style.display = "block";
-  document.querySelector("#haand").addEventListener("click", prepareShot);
 }
 
 // ---- LOADER SVG'EN
@@ -56,6 +52,7 @@ function loadSVG() {
 
 // ----  FORBEREDER SKUD AF KANONEN
 function prepareShot() {
+  // sørger for at hånden ikke er tilstedet når man har klikket på kanonen.
   document.querySelector("#haand").style.display = "none";
 
   count += 1; //Tæller hver gang der bliver klikket på kanonen.
@@ -119,11 +116,6 @@ function findAngle() {
 
 // ----  AFFYRER KANONEN
 function fireCannon() {
-  document.querySelector("#smoke").style.display = "block";
-  document.querySelector("#smoke").addEventListener("animationend", () => {
-    document.querySelector("#smoke").style.display = "none";
-  });
-
   let cannonball = document.querySelector("#cannonball");
 
   document.querySelector("#kanonlyd").play();
@@ -158,6 +150,12 @@ function fireCannon() {
   setTimeout(newBall, 1000); // til at fjerne kuglen, når den har nået sit mål.
 
   document.querySelector("#cannon").style.animationPlayState = "paused"; // Sætter kanonen på pause idet den skyder.
+
+  // Røg-effekt ved kanonen.
+  document.querySelector("#smoke").style.display = "block";
+  document.querySelector("#smoke").addEventListener("animationend", () => {
+    document.querySelector("#smoke").style.display = "none";
+  });
 }
 
 // ----  RAMMER DET FØRSTE SKIB
@@ -305,19 +303,17 @@ function preparePost() {
   document.querySelector(".confirm").addEventListener("click", e => {
     e.preventDefault();
     if (form.checkValidity()) {
-      let abc = jsonData.findIndex(
+      let findEmail = jsonData.findIndex(
         x => x.email === form.elements.emailadresse.value
       );
-      if (abc === -1) {
-        console.log("Welcome aboard");
+      if (findEmail === -1) {
         post({
           fullname: name,
           email: form.elements.emailadresse.value
         });
       } else {
-        alert("E-mailen eksisterer allerede");
         document.querySelector("#wrongMail").innerHTML =
-          "E-mail eksisterer allerede";
+          "E-mailen eksisterer allerede";
       }
     } else {
       document.querySelector("#email").classList.add("check_validation");
@@ -367,7 +363,6 @@ function getJson() {
   })
     .then(getJson => getJson.json())
     .then(getJson => {
-      console.log(getJson);
       jsonData = getJson;
     });
 }
