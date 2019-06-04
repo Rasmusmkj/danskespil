@@ -71,7 +71,7 @@ function prepareShot() {
 
     // Efter den 3. gang der bliver skudt skal der dukke et modal-vindue op.
     if (count == 3) {
-      setTimeout(gameEnd, 1500);
+      setTimeout(doneShooting, 1500);
     }
   }
 
@@ -268,14 +268,8 @@ function randomPrize(shipwreck) {
   }
 }
 
-// ---- NÅR DER ER BLEVET SKUDT ALLE TRE GANGE
-function gameEnd() {
-  let endOfGame = document.querySelector("#end_of_game");
-
-  // Gør modal-vinduet synligt over en transition.
-  endOfGame.style.visibility = "visible";
-  endOfGame.style.opacity = "1";
-
+// ---- NÅR DER ER BLEVET SKUDT 3 GANGE
+function doneShooting() {
   // Finder værdierne/præmierne på de skibene
   let prize1 = document.querySelector("#bannertext1").innerHTML.split(" ")[0];
   let prize2 = document.querySelector("#bannertext2").innerHTML.split(" ")[0];
@@ -283,6 +277,34 @@ function gameEnd() {
 
   // beregner den samlede præmie
   let prize = Number(prize1) + Number(prize2) + Number(prize3);
+
+  if (prize == 0) {
+    refreshGame();
+  } else {
+    gameEnd(prize);
+  }
+}
+
+// ---- HVIS BRUGEREN FÅR 0 POINT
+function refreshGame() {
+  let retryGame = document.querySelector("#retryGame");
+
+  // Gør modal-vinduet synligt over en transition.
+  retryGame.style.visibility = "visible";
+  retryGame.style.opacity = "1";
+
+  document.querySelector("#refresh").addEventListener("click", () => {
+    window.location.reload();
+  });
+}
+
+// ---- HVIS BRUGER FÅR OVER 0 POINT
+function gameEnd(prize) {
+  let endOfGame = document.querySelector("#end_of_game");
+
+  // Gør modal-vinduet synligt over en transition.
+  endOfGame.style.visibility = "visible";
+  endOfGame.style.opacity = "1";
 
   // skriver det ind i modal-vinduet.
   document.querySelector("#prize").innerHTML =
@@ -299,21 +321,23 @@ function gameEnd() {
 // ----  POSTER DATAERNE
 function preparePost() {
   let name = sessionStorage.getItem("title");
+  let formEmail = form.elements.emailadresse;
 
   document.querySelector(".confirm").addEventListener("click", e => {
     e.preventDefault();
     if (form.checkValidity()) {
-      let findEmail = jsonData.findIndex(
-        x => x.email === form.elements.emailadresse.value
-      );
+      let findEmail = jsonData.findIndex(x => x.email === formEmail.value);
       if (findEmail === -1) {
         post({
           fullname: name,
-          email: form.elements.emailadresse.value
+          email: formEmail.value
         });
       } else {
         document.querySelector("#wrongMail").innerHTML =
           "E-mailen eksisterer allerede";
+
+        formEmail.style.border = "1px solid red";
+        formEmail.style.backgroundColor = "rgb(255, 239, 239)";
       }
     } else {
       document.querySelector("#email").classList.add("check_validation");

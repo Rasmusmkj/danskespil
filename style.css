@@ -809,8 +809,9 @@ svg {
   color: black;
   position: absolute;
   width: 300px;
-  height: 550px;
-  top: 15vh;
+  /* height: 550px; */
+  height: auto;
+  top: 50px;
   text-align: center;
   visibility: hidden;
   transition: 1s;
@@ -878,6 +879,26 @@ input:focus {
 
 #wrongMail {
   color: red;
+}
+
+.obs {
+  font-size: 0.8em;
+}
+
+/* ved 0 point */
+#retryGame {
+  background-color: white;
+  color: black;
+  position: absolute;
+  width: 300px;
+  height: auto;
+  top: 15vh;
+  text-align: center;
+  visibility: hidden;
+  transition: 1s;
+  opacity: 0;
+  padding: 10px;
+  left: 30px;
 }
 
 /* baggrundsanimationer */
