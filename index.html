@@ -1,131 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-    <link rel="stylesheet" type="text/css" href="style.css" />
-    <meta name="robots" content="noindex, nofollow" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <title>Spil</title>
-  </head>
-  <body>
-    <section class="header">
-      <nav role="navigation">
-        <div id="menuToggle">
-          <input type="checkbox" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-          <span></span>
-          <span></span>
-          <span></span>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <title>Spil</title>
+</head>
 
-          <ul id="menu">
-            <a href="#spilQuick"><li>Spil Quick</li></a>
-            <a href="#quickchancen"><li>Quickchancen</li></a>
-            <a href="#kampanger"><li>Kampanger</li></a>
-            <a href="#vindere"><li>Vindere</li></a>
-          </ul>
-        </div>
-        <div class="login">
-          <h3>LOG IND</h3>
-        </div>
-        <img src="imgs/logo.png" />
-      </nav>
-    </section>
+<body>
+  <section class="header">
+    <nav role="navigation">
+      <div id="menuToggle">
+        <input type="checkbox" />
 
-    <section class="indhold">
-      <h1>
-        Ohøj Landkrabbe!
-        <div id="crab"></div>
-      </h1>
-      <div class="content_venstre">
-        <h2>
-          Har du hvad der skal til for at blive en
-          <span class="goldtext">ægte</span> pirat?
-        </h2>
+        <span></span>
+        <span></span>
+        <span></span>
 
-        <img src="imgs/splash.png" />
-      </div>
-      <!-- splash billede  -->
-
-      <div class="content_højre">
-        <h2>
-          Test dine evner med kanonen og vind
-          <span class="goldtext">GRATIS</span> spil hos Quick!
-        </h2>
-
-        <h2>Hvad er dit navn, Matros?</h2>
-
-        <form>
-          <label for="name"></label>
-          <input
-            type="text"
-            id="name"
-            name="fullname"
-            required
-            placeholder="Anders Andersen"
-          />
-        </form>
-        <div class="btn-start">
-          <button class="start">START SPIL</button>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <div class="top-f">
-        <address>
-          <img src="imgs/logo_ds.png" alt="Danske Spil logo" /> <br />
-          Danske Spil A/S <br />Korsdalsvej 135, 2605 Brøndby
-        </address>
-
-        <ul class="nav-tf">
-          <li>Driftsstatus</li>
-          <li>Bliv forhandler</li>
-          <li>Privatlivspolitik</li>
-          <li>Cookies</li>
-          <li>Kalaallisut</li>
-          <li>vilkår</li>
-          <li>Ansvarlighed</li>
-          <li>Vinderchancer</li>
-          <li>Spilleregler</li>
+        <ul id="menu">
+          <a href="#spilQuick">
+            <li>Spil Quick</li>
+          </a>
+          <a href="#quickchancen">
+            <li>Quickchancen</li>
+          </a>
+          <a href="#kampanger">
+            <li>Kampanger</li>
+          </a>
+          <a href="#vindere">
+            <li>Vindere</li>
+          </a>
         </ul>
-        <div class="contact-tf">
-          <p>Kontakt vores kundeservice alle dage 9-23</p>
-          <button class="contact-b-tf">Kontakt Kundeservice</button>
-        </div>
       </div>
-      <div class="under-f">
-        <img src="imgs/footer-bottom-1.png" alt="" />
-        <img src="imgs/footer-bottom-2.png" alt="" />
+      <div class="login">
+        <h3>LOG IND</h3>
       </div>
-    </footer>
-    <script>
-      const form = document.querySelector("form");
+      <img src="imgs/logo.png" />
+    </nav>
+  </section>
 
-      window.addEventListener("DOMContentLoaded", init);
+  <section class="indhold">
+    <h1>
+      Ohøj Landkrabbe!
+      <div id="crab"></div>
+    </h1>
+    <div class="content_venstre">
+      <h2>
+        Har du hvad der skal til for at blive en
+        <span class="goldtext">ægte</span> pirat?
+      </h2>
 
-      ("use strict");
+      <img src="imgs/splash.png" />
+    </div>
+    <!-- splash billede  -->
 
-      function init() {
-        document.querySelector("#name").addEventListener("keyup", sendInfo);
-        document.querySelector(".start").addEventListener("click", e => {
-          e.preventDefault();
-          if (form.checkValidity()) {
-            window.location.href = "spilside.html";
-          } else {
-            document.querySelector("#name").classList.add("check_validation");
-          }
-        });
+    <div class="content_højre">
+      <h2>
+        Test dine evner med kanonen og vind
+        <span class="goldtext">GRATIS</span> spil hos Quick!
+      </h2>
+
+      <h2>Hvad er dit navn, Matros?</h2>
+
+      <form>
+        <label for="name"></label>
+        <input type="text" id="name" name="fullname" required placeholder="Anders Andersen" />
+      </form>
+      <div class="btn-start">
+        <button class="start">START SPIL</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="top-f">
+      <address>
+        <img src="imgs/logo_ds.png" alt="Danske Spil logo" /> <br />
+        Danske Spil A/S <br />Korsdalsvej 135, 2605 Brøndby
+      </address>
+
+      <ul class="nav-tf">
+        <li>Driftsstatus</li>
+        <li>Bliv forhandler</li>
+        <li>Privatlivspolitik</li>
+        <li>Cookies</li>
+        <li>Kalaallisut</li>
+        <li>vilkår</li>
+        <li>Ansvarlighed</li>
+        <li>Vinderchancer</li>
+        <li>Spilleregler</li>
+      </ul>
+      <div class="contact-tf">
+        <p>Kontakt vores kundeservice alle dage 9-23</p>
+        <button class="contact-b-tf">Kontakt Kundeservice</button>
+      </div>
+    </div>
+    <div class="under-f">
+      <img src="imgs/footer-bottom-1.png" alt="" />
+      <img src="imgs/footer-bottom-2.png" alt="" />
+    </div>
+  </footer>
+  <script>
+    const form = document.querySelector("form");
+
+    window.addEventListener("DOMContentLoaded", init);
+
+    ("use strict");
+
+    function init() {
+
+      // Hvis brugeren ikke har været inde på siden, skal der komme en alert, der viser er der er tale om en skole opgave.
+      if (!localStorage.getItem("notificationShown")) {
+        alert("DETTE ER EN SKOLE OPGAVE")
+        localStorage.setItem('notificationShown', true);
       }
 
-      function sendInfo() {
-        sessionStorage.setItem("title", form.elements.fullname.value);
-      }
-    </script>
-  </body>
+      document.querySelector("#name").addEventListener("keyup", sendInfo);
+      document.querySelector(".start").addEventListener("click", e => {
+        e.preventDefault();
+        if (form.checkValidity()) {
+          window.location.href = "spilside.html";
+        } else {
+          document.querySelector("#name").classList.add("check_validation");
+        }
+      });
+    }
+
+    function sendInfo() {
+      sessionStorage.setItem("title", form.elements.fullname.value);
+    }
+  </script>
+</body>
+
 </html>

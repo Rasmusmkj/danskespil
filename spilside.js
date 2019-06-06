@@ -7,6 +7,11 @@ let count = 0; // til at tælle antallet af skud.
 let jsonData = [];
 
 function init() {
+  // Hvis brugeren ikke har været inde på siden, skal der komme en alert, der viser er der er tale om en skole opgave.
+  if (!localStorage.getItem("notificationShown")) {
+    alert("DETTE ER EN SKOLE OPGAVE")
+    localStorage.setItem('notificationShown', true);
+  };
   getJson();
   loadSVG();
   preparePost();
