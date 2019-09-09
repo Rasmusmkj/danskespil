@@ -1049,3 +1049,10 @@ input:focus {
     top: 140px;
   }
 }
+
+.buttoncontainer {
+  z-index: inherit;
+  top: -10px;
+  left: 250px;
+  position: absolute;
+}
