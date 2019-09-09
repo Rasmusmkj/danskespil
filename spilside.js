@@ -395,3 +395,20 @@ function getJson() {
       jsonData = getJson;
     });
 }
+
+document.querySelector(".mute").addEventListener("click", mutePage)
+
+// Muter et enkelt element i HTML'en
+function muteMe(elem) {
+  elem.muted = true;
+  elem.pause();
+}
+
+// Vil mute alle elementer på siden
+function mutePage() {
+  let elems = document.querySelectorAll("audio");
+
+  [].forEach.call(elems, function (elem) {
+    muteMe(elem);
+  });
+}
